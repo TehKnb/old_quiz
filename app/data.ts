@@ -1306,7 +1306,7 @@ export const infoScreens: InfoScreenConfig[] = [
     buttonText: 'Продовжити',
   },
   {
-    afterQuestionId: 'marketing_understanding', // 2 питання (questions[2].id)
+    afterQuestionId: 'ad_importance', // 2 питання (questions[2].id)
     id: 'info-after-2',
     title: '…',
     text: '…',
@@ -1314,7 +1314,7 @@ export const infoScreens: InfoScreenConfig[] = [
     imageMobile: '…',
   },
   {
-    afterQuestionId: 'ad_importance', // 3 питання (questions[4].id)
+    afterQuestionId: 'traffic_channel', // 3 питання (questions[4].id)
     id: 'info-after-3',
     title: '…',
     text: '…',
@@ -1322,8 +1322,8 @@ export const infoScreens: InfoScreenConfig[] = [
     imageMobile: '…',
   },
   {
-    afterQuestionId: 'smm_specialist', // 6 питання (questions[8].id)
-    id: 'info-after-9',
+    afterQuestionId: 'analytics_skills', // 6 питання (questions[8].id)
+    id: 'info-after-6',
     title: '…',
     text: '…',
     imageDesktop: '…',
