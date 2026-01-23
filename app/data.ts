@@ -1303,7 +1303,7 @@ export const infoScreens: InfoScreenConfig[] = [
       'щотижня.\n\n' +
       'Якщо Ви впровадите хоча б 30% з програми навчання, Ви гарантовано зростете\n' +
       'у 2–3 рази в чистому прибутку.',
-    buttonText: 'Продовжити',
+    buttonText: 'Далі',
   },
   {
     afterQuestionId: 'ad_importance', // 2 питання (questions[2].id)

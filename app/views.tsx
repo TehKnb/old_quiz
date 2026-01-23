@@ -1,7 +1,8 @@
 import { ArrowRight, CheckCircle2, BrainCircuit, Play } from 'lucide-react';
 import { questions, videoDatabase } from './data';
 import type { InfoScreenConfig } from './data';
-import { PrimaryButton } from './PrimaryButton';
+import { PrimaryButton } from './components/PrimaryButton';
+import { SecondaryButton } from './components/SecondaryButton';
 
 // --- Екран 1: Привітання ---
 export const IntroView = ({ onStart }: { onStart: () => void }) => (
@@ -173,11 +174,14 @@ export function InfoView({
   info,
   progress,
   onNext,
+  onPrev,
 }: {
   info: InfoScreenConfig;
   progress: number;
   onNext: () => void;
+  onPrev: () => void;
 }) {
+
   return (
     <div className="min-h-screen bg-[#F6F9FF] flex justify-center px-4 py-10">
       <div className="w-full max-w-4xl bg-white rounded-[32px] shadow-lg p-8 md:p-12">
@@ -223,7 +227,9 @@ export function InfoView({
         </p>
 
         {/* BUTTON */}
-        <div className="mt-10 flex justify-center">
+        <div className="mt-10 flex items-center justify-between">
+          <SecondaryButton onClick={onPrev} />
+
           <PrimaryButton onClick={onNext}>
             {info.buttonText ?? 'Далі'}
           </PrimaryButton>

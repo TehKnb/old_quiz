@@ -338,6 +338,7 @@ if (step === 'quiz') {
         info={currentStep.info}
         progress={progress}
         onNext={handleNext}
+        onPrev={goPrevQuestion}
       />
     );
   }
