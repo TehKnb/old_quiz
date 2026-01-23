@@ -1,5 +1,6 @@
 import { ArrowRight, CheckCircle2, BrainCircuit, Play } from 'lucide-react';
 import { questions, videoDatabase } from './data';
+import type { InfoScreenConfig } from './data';
 
 // --- Екран 1: Привітання ---
 export const IntroView = ({ onStart }: { onStart: () => void }) => (
@@ -166,3 +167,75 @@ export const ResultView = ({ data, name, niche }: { data: any, name: string, nic
     </div>
   );
 };
+
+export function InfoView({
+  info,
+  progress,
+  onNext,
+}: {
+  info: InfoScreenConfig;
+  progress: number;
+  onNext: () => void;
+}) {
+  return (
+    <div className="min-h-screen bg-[#F6F9FF] flex justify-center px-4 py-4 md:py-10 md:items-center">
+      <div className="w-full max-w-6xl bg-white rounded-[32px] shadow-lg p-4 md:p-10">
+
+        {/* Progress */}
+        <div className="mb-6">
+          <div className="flex justify-between text-xs text-slate-500 mb-2">
+            <span>Прогрес</span>
+            <span>{Math.round(progress)}%</span>
+          </div>
+
+          <div className="h-[3px] w-full bg-slate-200 rounded-full overflow-hidden">
+            <div
+              className="h-full bg-black transition-all duration-300"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+
+          {/* Desktop image */}
+          <div className="hidden md:flex bg-[#EEF3FF] rounded-[28px] p-6 items-center justify-center">
+            <img
+              src={info.imageDesktop}
+              alt={info.title}
+              className="w-full h-full object-contain"
+            />
+          </div>
+
+          {/* Mobile image */}
+          <div className="md:hidden">
+            <img
+              src={info.imageMobile}
+              alt={info.title}
+              className="w-full rounded-3xl object-cover"
+            />
+          </div>
+
+          {/* Text */}
+          <div className="flex flex-col">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 text-center md:text-left">
+              {info.title}
+            </h2>
+
+            <p className="text-slate-600 mb-6 text-center md:text-left">
+              {info.text}
+            </p>
+
+            <button
+              onClick={onNext}
+              className="w-full md:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-black text-white font-semibold hover:bg-slate-800 transition"
+            >
+              {info.buttonText ?? 'Далі'}
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+}

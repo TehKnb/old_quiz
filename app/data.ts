@@ -1279,3 +1279,50 @@ export const videoDatabase = [
   }
 
 ];
+
+export type InfoScreenConfig = {
+  afterQuestionId: string; // після якого питання показувати
+  id: string;
+  title: string;
+  text: string;
+  imageDesktop: string;
+  imageMobile: string;
+  buttonText?: string;
+};
+
+export const infoScreens: InfoScreenConfig[] = [
+  {
+    afterQuestionId: 'niche', // 1 питання (по твоєму questions[0].id)
+    id: 'info-after-1',
+    title: 'Ціль без плану — лише мрія',
+    text:
+      'Ідея полягає в тому, що Ви будете отримувати знання, техніки та інструменти, які одразу необхідно впроваджувати у ваш існуючий бізнес. Кожного тижня. Якщо Ви впровадите хоча б 30% з програми навчання, Ви гарантовано зростете в 2–3 рази у чистому прибутку.',
+    imageDesktop: 'ВСТАВ_ПОСИЛАННЯ_НА_КАРТИНКУ_PC_1',
+    imageMobile: 'ВСТАВ_ПОСИЛАННЯ_НА_КАРТИНКУ_MOBILE_1',
+    buttonText: 'Продовжити',
+  },
+  {
+    afterQuestionId: 'ad_importance', // 3 питання (questions[2].id)
+    id: 'info-after-3',
+    title: '…',
+    text: '…',
+    imageDesktop: '…',
+    imageMobile: '…',
+  },
+  {
+    afterQuestionId: 'targetologist_experience', // 5 питання (questions[4].id)
+    id: 'info-after-5',
+    title: '…',
+    text: '…',
+    imageDesktop: '…',
+    imageMobile: '…',
+  },
+  {
+    afterQuestionId: 'team_size', // 9 питання (questions[8].id)
+    id: 'info-after-9',
+    title: '…',
+    text: '…',
+    imageDesktop: '…',
+    imageMobile: '…',
+  },
+];

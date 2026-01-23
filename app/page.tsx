@@ -1,7 +1,9 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { questions, videoDatabase, Question } from './data';
+import { questions, videoDatabase, Question, infoScreens } from './data';
+import { buildFlow, getQuestionProgress } from './flow';
+import { InfoView } from './views';
 import { ArrowRight } from 'lucide-react';
 import { ImpactChart } from './ImpactChart';
 
@@ -58,9 +60,14 @@ type UtmParams = {
   utm_term?: string;
 };
 
+type LoadingStage = {
+  title: string;
+  progress: number;
+};
+
 export default function Home() {
   const [step, setStep] = useState<Step>('quiz');
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, AnswerValue>>({});
   const [contactForm, setContactForm] = useState({ name: '', phone: '' });
   const [resultData, setResultData] = useState<ResultData | null>(null);
@@ -68,7 +75,11 @@ export default function Home() {
   const [quizUrl, setQuizUrl] = useState<string>('');
   const autoNextTimeout = useRef<number | null>(null);
   const leadSentRef = useRef(false);
-  const currentQuestion: Question = questions[currentQuestionIndex];
+  const flow = buildFlow(questions, infoScreens);
+  const currentStep = flow[currentStepIndex];
+  const currentQuestion: Question | null =
+    currentStep?.type === 'question' ? currentStep.question : null;
+
 
   // ----- UTM + URL квіза -----
   useEffect(() => {
@@ -91,18 +102,22 @@ export default function Home() {
 
   // ----- робота з відповідями -----
   const setSingleAnswer = (value: string) => {
-    setAnswers((prev) => ({
-      ...prev,
-      [currentQuestion.id]: value,
-    }));
+  if (!currentQuestion) return;
+  setAnswers((prev) => ({
+    ...prev,
+    [currentQuestion.id]: value,
+  }));
   };
 
   const toggleMultipleAnswer = (value: string) => {
+    if (!currentQuestion) return;
+
     setAnswers((prev) => {
       const prevVal = prev[currentQuestion.id];
       const arr = Array.isArray(prevVal) ? prevVal : [];
       const exists = arr.includes(value);
       const nextArr = exists ? arr.filter((v) => v !== value) : [...arr, value];
+
       return {
         ...prev,
         [currentQuestion.id]: nextArr,
@@ -111,13 +126,17 @@ export default function Home() {
   };
 
   const setTextAnswer = (value: string) => {
+    if (!currentQuestion) return;
     setAnswers((prev) => ({
       ...prev,
       [currentQuestion.id]: value,
     }));
   };
 
+
   const hasAnswer = (): boolean => {
+    if (!currentQuestion) return true; // для info дозволяємо "далі"
+
     const val = answers[currentQuestion.id];
     if (currentQuestion.type === 'multiple') {
       return Array.isArray(val) && val.length > 0;
@@ -147,13 +166,45 @@ export default function Home() {
 
   // ----- перехід по питаннях -----
   const handleNext = () => {
-    if (!hasAnswer()) return;
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex((i) => i + 1);
+  // якщо на питанні — перевіряємо відповідь
+    if (currentStep.type === 'question') {
+      if (!hasAnswer()) return;
+    }
+
+    if (currentStepIndex < flow.length - 1) {
+      setCurrentStepIndex((i) => i + 1);
     } else {
       setStep('contact');
     }
   };
+
+  const goPrevQuestion = () => {
+  // стартуємо з кроку перед поточним
+  let prevIndex = currentStepIndex - 1;
+
+  // йдемо назад, поки не знайдемо question
+  while (prevIndex >= 0 && flow[prevIndex].type !== 'question') {
+    prevIndex--;
+  }
+
+  // якщо питань більше нема — нічого не робимо
+  if (prevIndex < 0) return;
+
+  // беремо id питання
+  const prevQuestionId = (flow[prevIndex] as { type: 'question'; question: Question }).question.id;
+
+
+  // видаляємо відповідь на це питання
+  setAnswers((prev) => {
+    const next = { ...prev };
+    delete next[prevQuestionId];
+    return next;
+  });
+
+  // переходимо саме на це питання
+  setCurrentStepIndex(prevIndex);
+};
+
 
   // ----- сабміт контактів -----
   const handleSubmitContact = async (e: React.FormEvent) => {
@@ -218,35 +269,23 @@ export default function Home() {
   // Автоперехід
   useEffect(() => {
   if (step !== 'quiz') return;
+  if (!currentQuestion) return; // якщо info — не автопереходимо
 
-  if (
-    currentQuestion.type !== 'choice' &&
-    currentQuestion.type !== 'multiple'
-  ) {
-    return;
-  }
-
+  if (currentQuestion.type !== 'choice' && currentQuestion.type !== 'multiple') return;
   if (!hasAnswer()) return;
 
-  if (autoNextTimeout.current !== null) {
-    clearTimeout(autoNextTimeout.current);
-  }
+  if (autoNextTimeout.current !== null) clearTimeout(autoNextTimeout.current);
 
   autoNextTimeout.current = window.setTimeout(() => {
     handleNext();
   }, 500);
 
   return () => {
-    if (autoNextTimeout.current !== null) {
-      clearTimeout(autoNextTimeout.current);
-    }
+    if (autoNextTimeout.current !== null) clearTimeout(autoNextTimeout.current);
   };
-}, [answers, currentQuestionIndex, step, currentQuestion.type]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [answers, currentStepIndex, step, currentQuestion?.type]);
 
-type LoadingStage = {
-  title: string;
-  progress: number;
-};
 
 const [loadingStages, setLoadingStages] = useState<LoadingStage[]>([
   { title: 'Аналізуємо ваш підхід до маркетингу', progress: 0 },
@@ -291,8 +330,24 @@ useEffect(() => {
 
 // ----- 1. КВІЗ -----
 if (step === 'quiz') {
-  const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
-  const q = currentQuestion;
+  const { progress } = getQuestionProgress(flow, currentStepIndex, questions.length);
+
+  if (currentStep.type === 'info') {
+    return (
+      <InfoView
+        info={currentStep.info}
+        progress={progress}
+        onNext={handleNext}
+      />
+    );
+  }
+
+  const q = currentStep.question;
+
+  let questionNumber = 0;
+  for (let i = 0; i <= currentStepIndex; i++) {
+    if (flow[i].type === 'question') questionNumber++;
+  }
   const imageUrl = questionImagesById[q.id];
   const currentValue = answers[q.id];
 
@@ -317,7 +372,7 @@ if (step === 'quiz') {
           <div className="block md:hidden mb-4">
             <div className="flex justify-between text-xs text-slate-500 mb-1">
               <span>
-                Питання {currentQuestionIndex + 1} / {questions.length}
+                Питання {questionNumber} / {questions.length}
               </span>
               <span>{Math.round(progress)}%</span>
             </div>
@@ -346,7 +401,7 @@ if (step === 'quiz') {
             <div className="hidden md:block sticky top-0 bg-white pt-2 pb-6 z-10">
               <div className="flex justify-between text-xs text-slate-500 mb-2">
                 <span>
-                  Питання {currentQuestionIndex + 1} / {questions.length}
+                  Питання {questionNumber} / {questions.length}
                 </span>
                 <span>{Math.round(progress)}%</span>
               </div>
@@ -366,7 +421,7 @@ if (step === 'quiz') {
                 {q.text}
               </h2>
               {/* ===== MOBILE FIRST QUESTION (IMAGE SEPARATE) ===== */}
-              {currentQuestionIndex === 0 ? (
+              {questionNumber === 1 ? (
                 <>
                   {/* IMAGE */}
                   <div className="md:hidden mb-4">
@@ -449,20 +504,9 @@ if (step === 'quiz') {
 
             {/* BUTTONS */}
             <div className="flex items-center justify-between pt-6 mt-auto">
-              {currentQuestionIndex > 0 ? (
+              {questionNumber > 1 ? (
                 <button
-                  onClick={() => {
-                    const prevIndex = currentQuestionIndex - 1;
-                    const prevQuestionId = questions[prevIndex].id;
-
-                    setAnswers((prev) => {
-                      const next = { ...prev };
-                      delete next[prevQuestionId];
-                      return next;
-                    });
-
-                    setCurrentQuestionIndex(prevIndex);
-                  }}
+                  onClick={goPrevQuestion}
                   className="
                     inline-flex items-center gap-2
                     px-4 py-2
