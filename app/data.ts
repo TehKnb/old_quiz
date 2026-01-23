@@ -1307,11 +1307,12 @@ export const infoScreens: InfoScreenConfig[] = [
   },
   {
     afterQuestionId: 'ad_importance', // 2 питання (questions[2].id)
-    id: 'info-after-2',
-    title: '…',
-    text: '…',
-    imageDesktop: '…',
-    imageMobile: '…',
+    id: 'info-care',
+    title: 'Ми подбали про вас!',
+    text:'Програма «Стратегія керованого зростання в бізнесі» створена так, щоб допомогти підприємцям:',
+    imageDesktop: 'https://i.ibb.co/vCt4P6Nn/image.jpg',
+    imageMobile: 'https://i.ibb.co/vCt4P6Nn/image.jpg',
+    buttonText: 'Продовжити',
   },
   {
     afterQuestionId: 'traffic_channel', // 3 питання (questions[4].id)

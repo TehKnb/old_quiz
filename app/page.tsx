@@ -422,7 +422,7 @@ if (step === 'quiz') {
                 {q.text}
               </h2>
               {/* ===== MOBILE FIRST QUESTION (IMAGE SEPARATE) ===== */}
-              {questionNumber === 1 ? (
+              {questionNumber === 7 ? (
                 <>
                   {/* IMAGE */}
                   <div className="md:hidden mb-4">
