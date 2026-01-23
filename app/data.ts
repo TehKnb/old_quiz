@@ -1336,8 +1336,8 @@ export const infoScreens: InfoScreenConfig[] = [
     title: 'Трансформуйте свій бізнес з "Стратегією Керованого Зростання"',
     text:
       'Відчуйте впевненість у своїх діях. Програма допоможе вам побудувати системний бізнес, який зростає передбачувано й стабільно. Прості та зрозумілі кроки, які можна застосовувати одразу у вашій справі.',
-    imageDesktop: 'https://i.ibb.co/XXXX/info-4-desktop.png',
-    imageMobile: 'https://i.ibb.co/XXXX/info-4-mobile.png',
+    imageDesktop: 'https://i.ibb.co/TBfSv3VH/image.jpg',
+    imageMobile: 'https://i.ibb.co/TBfSv3VH/image.jpg',
     buttonText: 'Продовжити',
   },
 
