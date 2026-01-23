@@ -1315,19 +1315,30 @@ export const infoScreens: InfoScreenConfig[] = [
     buttonText: 'Продовжити',
   },
   {
-    afterQuestionId: 'traffic_channel', // 3 питання (questions[4].id)
-    id: 'info-after-3',
-    title: '…',
-    text: '…',
-    imageDesktop: '…',
-    imageMobile: '…',
+    id: 'third_info',
+    afterQuestionId: 'traffic_channel', // ⚠️ постав після потрібного питання
+    title: '', // заголовка немає — він у картинці
+    text:
+      '"Я довго блукав у хаосі завдань та невпевненості, але програма змінила все.\n' +
+      'Усього за 7 тижнів я систематизував бізнес, навчився делегувати,\n' +
+      'зрозумів свої ключові точки росту.\n\n' +
+      'Прибуток виріс, а я нарешті відчув контроль над процесами.\n' +
+      'Бізнес став зрозумілим і керованим!"\n\n' +
+      '— Андрій, підприємець',
+    imageDesktop: 'https://i.ibb.co/nqVgnTH0/image.jpg',
+    imageMobile: 'https://i.ibb.co/nqVgnTH0/image.jpg',
+    buttonText: 'Продовжити',
   },
+
   {
-    afterQuestionId: 'analytics_skills', // 6 питання (questions[8].id)
-    id: 'info-after-6',
-    title: '…',
-    text: '…',
-    imageDesktop: '…',
-    imageMobile: '…',
+    id: 'info-transform',
+    afterQuestionId: 'analytics_skills', // ⚠️ постав після потрібного питання
+    title: 'Трансформуйте свій бізнес з "Стратегією Керованого Зростання"',
+    text:
+      'Відчуйте впевненість у своїх діях. Програма допоможе вам побудувати системний бізнес, який зростає передбачувано й стабільно. Прості та зрозумілі кроки, які можна застосовувати одразу у вашій справі.',
+    imageDesktop: 'https://i.ibb.co/XXXX/info-4-desktop.png',
+    imageMobile: 'https://i.ibb.co/XXXX/info-4-mobile.png',
+    buttonText: 'Продовжити',
   },
+
 ];
