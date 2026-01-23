@@ -98,7 +98,7 @@ export const questions: Question[] = [
     type: "text",
     placeholder: "Наприклад: салон краси, одяг, стоматологія..."
   },
-  
+
   {
     id: "kpi_tracking",
     text: "Чи знаєте Ви, які показники потрібно відстежувати в бізнесі, і чи робите це регулярно?",
@@ -1281,24 +1281,28 @@ export const videoDatabase = [
 ];
 
 export type InfoScreenConfig = {
-  afterQuestionId: string; // після якого питання показувати
   id: string;
+  afterQuestionId: string;
   title: string;
   text: string;
-  imageDesktop: string;
-  imageMobile: string;
   buttonText?: string;
+
+  imageDesktop?: string;
+  imageMobile?: string;
 };
 
 export const infoScreens: InfoScreenConfig[] = [
   {
-    afterQuestionId: 'niche', // 1 питання (по твоєму questions[0].id)
-    id: 'info-after-1',
+    // ПІСЛЯ 1 ПИТАННЯ
+    afterQuestionId: 'marketing_understanding', // або інший id, який у тебе зараз перший
+    id: 'info-goal-plan',
     title: 'Ціль без плану — лише мрія',
     text:
-      'Ідея полягає в тому, що Ви будете отримувати знання, техніки та інструменти, які одразу необхідно впроваджувати у ваш існуючий бізнес. Кожного тижня. Якщо Ви впровадите хоча б 30% з програми навчання, Ви гарантовано зростете в 2–3 рази у чистому прибутку.',
-    imageDesktop: 'ВСТАВ_ПОСИЛАННЯ_НА_КАРТИНКУ_PC_1',
-    imageMobile: 'ВСТАВ_ПОСИЛАННЯ_НА_КАРТИНКУ_MOBILE_1',
+      'Ідея полягає в тому, що Ви будете отримувати знання, техніки та інструменти,\n' +
+      'які одразу необхідно впроваджувати у ваш існуючий бізнес — крок за кроком,\n' +
+      'щотижня.\n\n' +
+      'Якщо Ви впровадите хоча б 30% з програми навчання, Ви гарантовано зростете\n' +
+      'у 2–3 рази в чистому прибутку.',
     buttonText: 'Продовжити',
   },
   {
