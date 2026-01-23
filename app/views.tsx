@@ -1,6 +1,7 @@
 import { ArrowRight, CheckCircle2, BrainCircuit, Play } from 'lucide-react';
 import { questions, videoDatabase } from './data';
 import type { InfoScreenConfig } from './data';
+import { PrimaryButton } from './PrimaryButton';
 
 // --- Екран 1: Привітання ---
 export const IntroView = ({ onStart }: { onStart: () => void }) => (
@@ -223,12 +224,9 @@ export function InfoView({
 
         {/* BUTTON */}
         <div className="mt-10 flex justify-center">
-          <button
-            onClick={onNext}
-            className="px-10 py-4 rounded-2xl bg-black text-white font-semibold hover:bg-slate-800 transition"
-          >
+          <PrimaryButton onClick={onNext}>
             {info.buttonText ?? 'Далі'}
-          </button>
+          </PrimaryButton>
         </div>
       </div>
     </div>
