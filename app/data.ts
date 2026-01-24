@@ -105,6 +105,7 @@ export const questions: Question[] = [
   {
     id: "niche",
     text: "Яка у вас ніша бізнесу?",
+    subtitle: 'Сюди ви можете вписати короткий опис вашої справи:',
     type: "text",
     placeholder: "Наприклад: салон краси, одяг, стоматологія..."
   },

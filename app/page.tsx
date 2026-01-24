@@ -6,6 +6,7 @@ import { buildFlow, getQuestionProgress } from './flow';
 import { QuestionChoiceMobile } from './QuestionChoiceMobile';
 import { QuestionMultipleCentered } from './QuestionMultipleCentered';
 import { QuestionChoiceCentered } from './QuestionChoiceCentered';
+import { QuestionTextCentered } from './QuestionTextCentered';
 
 
 /* ===================== TYPES ===================== */
@@ -396,6 +397,41 @@ if (step === 'quiz' && questionIndex === 5) {
     />
   );
 }
+
+if (step === 'quiz' && questionIndex === 6) {
+  return (
+    <QuestionChoiceCentered
+      progress={progress}
+      question={{
+        text: currentQuestion!.text,
+        options: currentQuestion!.options ?? [],
+      }}
+      value={answers[currentQuestion!.id] as string | undefined}
+      onSelect={setSingleAnswer}
+      onNext={handleNext}
+      onPrev={goPrevQuestion}
+    />
+  );
+}
+
+// ----- 5-й ВАРІАНТ: text -----
+if (step === 'quiz' && questionIndex === 7) {
+  return (
+    <QuestionTextCentered
+      progress={progress}
+      question={{
+        text: currentQuestion!.text,
+        subtitle: currentQuestion?.subtitle,
+        placeholder: currentQuestion?.placeholder,
+      }}
+      value={answers[currentQuestion!.id] as string | undefined}
+      onChange={setTextAnswer}
+      onNext={handleNext}
+      onPrev={goPrevQuestion}
+    />
+  );
+}
+
 
 // ----- FALLBACK -----
 return <div />;
