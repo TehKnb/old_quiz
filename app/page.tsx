@@ -483,7 +483,7 @@ if (step === 'quiz') {
               )}
 
               {(q.type === 'choice' || q.type === 'multiple') && q.options && (
-                <div className="grid gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {q.options.map((opt) => {
                     const active = isSelected(opt);
                     return (
@@ -492,7 +492,7 @@ if (step === 'quiz') {
                       type="button"
                       onClick={() => handleOptionClick(opt)}
                       className={`
-                        text-left rounded-2xl px-5 py-4 border transition
+                        min-h-[72px] text-left rounded-2xl px-5 py-4 border transition
                         bg-white opacity-100
                         ${
                           active
