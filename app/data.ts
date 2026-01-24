@@ -47,15 +47,15 @@ export const cardQuestions: CardQuestion[] = [
     options: [
       {
         label: 'Товари',
-        image: 'https://i.ibb.co/RGHwxCh6/1.jpg',
+        image: 'https://i.ibb.co/LVfVP1z/1.jpg',
       },
       {
         label: 'Послуги',
-        image: 'https://i.ibb.co/67vpK1qZ/1.jpg',
+        image: 'https://i.ibb.co/C49Wz0L/1.jpg',
       },
       {
         label: 'І те і інше',
-        image: 'https://i.ibb.co/XkkrGGb7/1.jpg',
+        image: 'https://i.ibb.co/4n00np2F/1.jpg',
       },
     ],
   },
