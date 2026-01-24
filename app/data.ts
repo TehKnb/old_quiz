@@ -36,7 +36,7 @@ export const questions: Question[] = [
   },
 
   {
-    id: "business_challenges",
+    id: "ad_importance",
     text: "З якими викликами у бізнесі ви стикаєтесь зараз?",
     type: "multiple",
     options: [

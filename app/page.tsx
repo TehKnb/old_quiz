@@ -11,8 +11,8 @@ import { ImpactChart } from './ImpactChart';
 const questionImagesById: Record<string, string> = {
   //niche: 'https://i.ibb.co/q3RG8r4f/Pc1.png',
   //marketing_understanding: 'https://i.ibb.co/JjwnhK1f/Pc2.png',
-  // прозора картинка https://i.ibb.co/qMSw2W6W/istockphoto-1408772675-612x612.jpg
-  niche: 'https://i.ibb.co/qMSw2W6W/istockphoto-1408772675-612x612.jpg',
+
+  niche: 'https://i.ibb.co/q3RG8r4f/Pc1.png',
   marketing_understanding: 'https://i.ibb.co/5gqPfQpG/389574de34d25597.png',
   ad_importance: 'https://i.ibb.co/vCb44WWP/Pc3.png',
   traffic_channel: 'https://i.ibb.co/DgR9vg9Y/Pc4.png',
@@ -32,7 +32,7 @@ const questionImagesById: Record<string, string> = {
 const questionImagesMobileById: Record<string, string> = {
   //niche: 'https://i.ibb.co/5gqPfQpG/389574de34d25597.png',
   //marketing_understanding: 'https://i.ibb.co/JjwnhK1f/Pc2.png',
-  niche: 'https://i.ibb.co/qMSw2W6W/istockphoto-1408772675-612x612.jpg',
+  niche: 'https://i.ibb.co/q3RG8r4f/Pc1.png',
   marketing_understanding: 'https://i.ibb.co/5gqPfQpG/389574de34d25597.png',
   ad_importance: 'https://i.ibb.co/jvnzL5mT/Tf3.png',
   traffic_channel: 'https://i.ibb.co/bG4khCf/Tf4.png',
