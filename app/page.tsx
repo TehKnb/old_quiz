@@ -71,7 +71,7 @@ export default function Home() {
   const leadSentRef = useRef(false);
 
   /* ---------- FLOW ---------- */
-  const flow = buildFlow(questions, infoScreens);
+  const flow = buildFlow(questions, []);
   const currentStep = flow[currentStepIndex];
 
   const currentQuestion: Question | null =
