@@ -51,7 +51,7 @@ export const cardQuestions: CardQuestion[] = [
       },
       {
         label: 'Послуги',
-        image: 'img src="https://i.ibb.co/67vpK1qZ/1.jpg',
+        image: 'https://i.ibb.co/67vpK1qZ/1.jpg',
       },
       {
         label: 'І те і інше',
