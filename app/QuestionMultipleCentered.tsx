@@ -72,9 +72,7 @@ export function QuestionMultipleCentered({
             })}
           </div>
         </div>
-      </div>
-
-      {/* BUTTONS */}
+        {/* BUTTONS */}
       <div className="flex justify-between items-center pt-4">
         {onPrev ? (
           <button onClick={onPrev} className="text-slate-500">
@@ -92,6 +90,10 @@ export function QuestionMultipleCentered({
           Далі
         </button>
       </div>
+
+      </div>
+
+      
     </div>
   );
 }
