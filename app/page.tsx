@@ -9,6 +9,10 @@ import { QuestionChoiceCentered } from './QuestionChoiceCentered';
 import { QuestionTextCentered } from './QuestionTextCentered';
 import { QuestionChoiceCards } from './QuestionChoiceCards';
 import { cardQuestions } from './data';
+import { ContactRenderer } from './ContactRenderer';
+import { ResultRenderer } from './ResultRenderer';
+import { LoadingRenderer } from './LoadingRenderer';
+
 
 
 /* ===================== TYPES ===================== */
@@ -567,6 +571,36 @@ if (step === 'quiz' && questionIndex === 15) {
     />
   );
 }
+
+// ----- CONTACT -----
+if (step === 'contact') {
+  return (
+    <ContactRenderer
+      name={contactForm.name}
+      phone={contactForm.phone}
+      onChange={(field, value) =>
+        setContactForm((p) => ({ ...p, [field]: value }))
+      }
+      onSubmit={handleSubmitContact}
+    />
+  );
+}
+
+// ----- LOADING -----
+if (step === 'loading') {
+  return <LoadingRenderer stages={loadingStages} />;
+}
+
+// ----- RESULT -----
+if (step === 'result' && resultData) {
+  return (
+    <ResultRenderer
+      sellingText={resultData.sellingText}
+      video={resultData.video}
+    />
+  );
+}
+
 
 // ----- FALLBACK -----
 return <div />;
