@@ -89,6 +89,14 @@ export function QuestionChoiceCards({
             </div>
           )}
 
+            {/* VISUAL ONLY NEXT */}
+            <button
+                disabled
+                className="px-8 py-4 rounded-2xl bg-black text-white opacity-40 cursor-default"
+            >
+                Далі
+            </button>
+
         </div>
       </div>
     </div>
