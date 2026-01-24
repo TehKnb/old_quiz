@@ -78,6 +78,10 @@ export default function Home() {
   const currentQuestion: Question | null =
   currentStep?.type === 'question' ? currentStep.question : null;
 
+  const questionIndex = flow
+  .slice(0, currentStepIndex + 1)
+  .filter((s) => s.type === 'question').length;
+
   /* ---------- PROGRESS ---------- */
 
 const totalQuestions = flow.filter((s) => s.type === 'question').length;
@@ -305,54 +309,49 @@ const { progress } = getQuestionProgress(
   }, [step]);
 
  // ----- QUESTION: CHOICE -----
-if (step === 'quiz' && currentQuestion?.type === 'choice') {
+if (step === 'quiz' && questionIndex === 1) {
   return (
     <QuestionChoiceMobile
       progress={progress}
       question={{
-        text: currentQuestion.text,
-        options: currentQuestion.options ?? [],
+        text: currentQuestion!.text,
+        options: currentQuestion!.options ?? [],
       }}
-      value={answers[currentQuestion.id] as string | undefined}
+      value={answers[currentQuestion!.id] as string | undefined}
       onSelect={setSingleAnswer}
       onNext={handleNext}
-      onPrev={currentStepIndex > 0 ? goPrevQuestion : undefined}
     />
   );
 }
 
 // ----- QUESTION: MULTIPLE -----
-if (step === 'quiz' && currentQuestion?.type === 'multiple') {
+if (step === 'quiz' && questionIndex === 2) {
   return (
     <QuestionMultipleCentered
       progress={progress}
       question={{
-        text: currentQuestion.text,
+        text: currentQuestion!.text,
         helperText: 'Відмітьте всі, що підходять',
-        options: currentQuestion.options ?? [],
+        options: currentQuestion!.options ?? [],
       }}
-      values={(answers[currentQuestion.id] as string[]) ?? []}
+      values={(answers[currentQuestion!.id] as string[]) ?? []}
       onToggle={toggleMultipleAnswer}
       onNext={handleNext}
-      onPrev={currentStepIndex > 0 ? goPrevQuestion : undefined}
+      onPrev={goPrevQuestion}
     />
   );
 }
 
 // ----- 3-й ВАРІАНТ: choice без картинки -----
-if (
-  step === 'quiz' &&
-  currentQuestion?.type === 'choice' &&
-  currentQuestion.id !== 'marketing_understanding' // перший варіант
-) {
+if (step === 'quiz' && questionIndex === 3) {
   return (
     <QuestionChoiceCentered
       progress={progress}
       question={{
-        text: currentQuestion.text,
-        options: currentQuestion.options ?? [],
+        text: currentQuestion!.text,
+        options: currentQuestion!.options ?? [],
       }}
-      value={answers[currentQuestion.id] as string | undefined}
+      value={answers[currentQuestion!.id] as string | undefined}
       onSelect={setSingleAnswer}
       onNext={handleNext}
       onPrev={goPrevQuestion}
