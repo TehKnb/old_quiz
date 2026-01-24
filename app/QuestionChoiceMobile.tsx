@@ -33,40 +33,50 @@ export function QuestionChoiceMobile({
         </div>
       </div>
 
-      {/* IMAGE */}
-      <img
-        src="https://i.ibb.co/kVChV0gM/Tf1.png"
-        alt=""
-        className="w-full rounded-3xl mb-4"
-      />
+      {/* CONTENT */}
+      <div className="flex flex-col md:grid md:grid-cols-2 md:gap-8 md:items-start">
 
-      {/* QUESTION */}
-      <h1 className="text-xl font-bold text-center mb-4">
-        {question.text}
-      </h1>
+        {/* IMAGE */}
+        <img
+          src="https://i.ibb.co/gbTjSYMm/y-Tr0aw-Rv-FNbbh4nl-Bg-IBSj6-O2r-GXUOtjqhr-EJv0p.png"
+          alt=""
+          className="w-full rounded-3xl mb-4 md:mb-0"
+        />
 
-      {/* OPTIONS */}
-      <div className="flex flex-col gap-3 mb-6">
-        {question.options.map((opt) => {
-          const active = value === opt;
+        {/* RIGHT SIDE */}
+        <div className="flex flex-col">
 
-          return (
-            <button
-              key={opt}
-              onClick={() => onSelect(opt)}
-              className={`
-                px-4 py-4 rounded-2xl border text-left
-                ${active ? 'border-black' : 'border-slate-300'}
-              `}
-            >
-              {opt}
-            </button>
-          );
-        })}
+          {/* QUESTION */}
+          <h1 className="text-xl font-bold text-center md:text-left mb-4">
+            {question.text}
+          </h1>
+
+          {/* OPTIONS */}
+          <div className="flex flex-col gap-3 mb-6">
+            {question.options.map((opt) => {
+              const active = value === opt;
+
+              return (
+                <button
+                  key={opt}
+                  onClick={() => onSelect(opt)}
+                  className={`
+                    px-4 py-4 rounded-2xl text-left transition
+                    ${active
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-white border border-slate-300 text-black hover:border-slate-400'}
+                  `}
+                >
+                  {opt}
+                </button>
+              );
+            })}
+          </div>
+        </div>
       </div>
 
       {/* BUTTONS */}
-      <div className="mt-auto flex justify-between items-center">
+      <div className="mt-auto flex justify-between items-center pt-4">
         {onPrev ? (
           <button onClick={onPrev} className="text-slate-500">
             Назад
