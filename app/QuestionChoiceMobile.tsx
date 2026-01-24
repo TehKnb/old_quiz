@@ -2,8 +2,10 @@
 
 type Props = {
   progress: number;
+  imageUrl: string; // 👈 ДОДАЛИ
   question: {
     text: string;
+    subtitle?: string;
     options: string[];
   };
   value?: string;
@@ -14,6 +16,7 @@ type Props = {
 
 export function QuestionChoiceMobile({
   progress,
+  imageUrl, // 👈
   question,
   value,
   onSelect,
@@ -40,7 +43,7 @@ export function QuestionChoiceMobile({
           {/* IMAGE */}
           <div className="w-full flex justify-center items-center mb-4 md:mb-0">
             <img
-              src="https://i.ibb.co/gbTjSYMm/y-Tr0aw-Rv-FNbbh4nl-Bg-IBSj6-O2r-GXUOtjqhr-EJv0p.png"
+              src={imageUrl}
               alt=""
               className="w-full h-auto rounded-3xl"
             />
@@ -53,6 +56,12 @@ export function QuestionChoiceMobile({
             <h1 className="text-2xl md:text-4xl font-bold text-center mb-6">
               {question.text}
             </h1>
+
+            {question.subtitle && (
+            <p className="text-sm md:text-base text-slate-500 text-center mb-8">
+                {question.subtitle}
+            </p>
+            )}
 
             {/* OPTIONS */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">

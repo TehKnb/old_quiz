@@ -313,8 +313,10 @@ if (step === 'quiz' && questionIndex === 1) {
   return (
     <QuestionChoiceMobile
       progress={progress}
+      imageUrl="https://i.ibb.co/gbTjSYMm/y-Tr0aw-Rv-FNbbh4nl-Bg-IBSj6-O2r-GXUOtjqhr-EJv0p.png"
       question={{
         text: currentQuestion!.text,
+        subtitle: currentQuestion?.subtitle,
         options: currentQuestion!.options ?? [],
       }}
       value={answers[currentQuestion!.id] as string | undefined}
@@ -349,6 +351,24 @@ if (step === 'quiz' && questionIndex === 3) {
       progress={progress}
       question={{
         text: currentQuestion!.text,
+        options: currentQuestion!.options ?? [],
+      }}
+      value={answers[currentQuestion!.id] as string | undefined}
+      onSelect={setSingleAnswer}
+      onNext={handleNext}
+      onPrev={goPrevQuestion}
+    />
+  );
+}
+
+if (step === 'quiz' && questionIndex === 4) {
+  return (
+    <QuestionChoiceMobile
+      progress={progress}
+      imageUrl="https://i.ibb.co/SXMCpJ34/2a35ad61862addba.jpg"
+      question={{
+        text: currentQuestion!.text,
+        subtitle: currentQuestion!.subtitle,
         options: currentQuestion!.options ?? [],
       }}
       value={answers[currentQuestion!.id] as string | undefined}

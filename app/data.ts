@@ -6,6 +6,7 @@ export type QuestionType = 'text' | 'choice' | 'multiple';
 export interface Question {
   id: string;
   text: string;
+  subtitle?: string; // 👈 НОВЕ
   type: QuestionType;
   options?: string[];
   placeholder?: string;
@@ -64,6 +65,7 @@ export const questions: Question[] = [
   {
     id: "targetologist_experience",
     text: "Який у вас зараз режим у бізнесі?",
+    subtitle: "Оберіть найближчий варіант",
     type: "choice",
     options: [
       "Працюю по 9–10 годин на день, операційка забирає весь час",
