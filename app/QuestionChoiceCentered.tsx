@@ -20,9 +20,7 @@ export function QuestionChoiceCentered({
 }: Props) {
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="w-full max-w-3xl">
-
-        {/* PROGRESS */}
+       {/* PROGRESS */}
         <div className="mb-6">
           <div className="h-1 bg-slate-200 rounded-full overflow-hidden">
             <div
@@ -31,6 +29,8 @@ export function QuestionChoiceCentered({
             />
           </div>
         </div>
+      <div className="w-full max-w-3xl">
+
 
         {/* CONTENT */}
         <div className="flex flex-col items-center text-center">
