@@ -1,3 +1,5 @@
+'use client';
+
 type Props = {
   progress: number;
   question: {
@@ -26,7 +28,7 @@ export function QuestionChoiceCards({
       <div className="w-full px-4 pt-4">
         <div className="h-[3px] bg-slate-200 rounded-full overflow-hidden">
           <div
-            className="h-full bg-black"
+            className="h-full bg-black transition-all"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -42,19 +44,24 @@ export function QuestionChoiceCards({
           </h2>
 
           {/* CARDS */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {question.options.map((opt) => {
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            {question.options.map((opt, index) => {
               const active = value === opt.label;
+              const isThirdMobile = index === 2;
 
               return (
                 <button
                   key={opt.label}
                   onClick={() => onSelect(opt.label)}
                   className={`
-                    rounded-2xl overflow-hidden transition border
+                    rounded-2xl overflow-hidden transition border bg-white
                     ${active
                       ? 'border-blue-600 ring-2 ring-blue-600'
                       : 'border-slate-200 hover:border-slate-300'}
+                    ${isThirdMobile
+                      ? 'col-span-2 justify-self-center max-w-[260px]'
+                      : ''}
+                    md:col-span-1 md:justify-self-auto md:max-w-none
                   `}
                 >
                   {/* IMAGE */}
@@ -69,7 +76,7 @@ export function QuestionChoiceCards({
                   {/* LABEL */}
                   <div
                     className={`
-                      py-4 text-center font-medium
+                      py-3 md:py-4 text-center font-medium
                       ${active ? 'text-blue-600' : 'text-slate-800'}
                     `}
                   >
@@ -81,23 +88,23 @@ export function QuestionChoiceCards({
           </div>
 
           {/* NAV */}
-            <div className="mt-10 flex justify-between items-center">
+          <div className="mt-10 flex justify-between items-center">
             {onPrev ? (
-                <button onClick={onPrev} className="text-slate-500">
+              <button onClick={onPrev} className="text-slate-500">
                 Назад
-                </button>
+              </button>
             ) : (
-                <div />
+              <div />
             )}
 
             {/* VISUAL ONLY NEXT */}
             <button
-                disabled
-                className="px-8 py-4 rounded-2xl bg-black text-white opacity-40 cursor-default"
+              disabled
+              className="px-8 py-4 rounded-2xl bg-black text-white opacity-40 cursor-default"
             >
-                Далі
+              Далі
             </button>
-            </div>
+          </div>
 
         </div>
       </div>
