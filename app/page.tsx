@@ -470,6 +470,23 @@ if (step === 'quiz' && questionIndex === 9) {
   );
 }
 
+if (step === 'quiz' && questionIndex === 10) {
+  const q = cardQuestions[1];
+
+  return (
+    <QuestionChoiceCards
+      progress={progress}
+      question={q}
+      value={answers[q.id] as string | undefined}
+      onSelect={(v) => {
+        setSingleAnswer(v);
+        setTimeout(handleNext, 300);
+      }}
+      onPrev={goPrevQuestion}
+    />
+  );
+}
+
 
 // ----- FALLBACK -----
 return <div />;

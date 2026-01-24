@@ -59,6 +59,26 @@ export const cardQuestions: CardQuestion[] = [
       },
     ],
   },
+
+  {
+    id: 'team_quality',
+    text: 'Як ви працюєте?',
+    type: 'choice-card',
+    options: [
+      {
+        label: 'У мене офлайн точка',
+        image: 'https://i.ibb.co/mF8TwDQv/image.jpg',
+      },
+      {
+        label: 'Працюю в онлайні',
+        image: 'https://i.ibb.co/jvL5Z7B0/image.jpg',
+      },
+      {
+        label: 'Є і фізична точка і онлайн продажі',
+        image: 'https://i.ibb.co/F4YtnqGT/image.jpg',
+      },
+    ],
+  },
 ];
 
 // 1. СПИСОК ПИТАНЬ (15 штук на базі старого квіза)
