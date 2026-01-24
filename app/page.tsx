@@ -379,6 +379,24 @@ if (step === 'quiz' && questionIndex === 4) {
   );
 }
 
+// ----- 3-й ВАРІАНТ: choice без картинки -----
+if (step === 'quiz' && questionIndex === 5) {
+  return (
+    <QuestionChoiceCentered
+      progress={progress}
+      question={{
+        text: currentQuestion!.text,
+        subtitle: currentQuestion?.subtitle, // можна, а можна і ні
+        options: currentQuestion!.options ?? [],
+      }}
+      value={answers[currentQuestion!.id] as string | undefined}
+      onSelect={setSingleAnswer}
+      onNext={handleNext}
+      onPrev={goPrevQuestion}
+    />
+  );
+}
+
 // ----- FALLBACK -----
 return <div />;
 }

@@ -2,6 +2,7 @@ type Props = {
   progress: number;
   question: {
     text: string;
+    subtitle?: string; // 👈 додали
     options: string[];
   };
   value?: string;
@@ -37,10 +38,15 @@ export function QuestionChoiceCentered({
 
           <div className="flex flex-col items-center text-center">
 
-            {/* QUESTION */}
-            <h2 className="text-2xl md:text-4xl font-bold mb-8">
-              {question.text}
+            <h2 className="text-2xl md:text-4xl font-bold mb-4">
+            {question.text}
             </h2>
+
+            {question.subtitle && (
+            <p className="text-sm md:text-base text-slate-500 text-center mb-8">
+                {question.subtitle}
+            </p>
+            )}
 
             {/* OPTIONS */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full mb-8">
