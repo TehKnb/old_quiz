@@ -81,13 +81,14 @@ export function QuestionChoiceCards({
           </div>
 
           {/* NAV */}
-          {onPrev && (
-            <div className="mt-10">
-              <button onClick={onPrev} className="text-slate-500">
+            <div className="mt-10 flex justify-between items-center">
+            {onPrev ? (
+                <button onClick={onPrev} className="text-slate-500">
                 Назад
-              </button>
-            </div>
-          )}
+                </button>
+            ) : (
+                <div />
+            )}
 
             {/* VISUAL ONLY NEXT */}
             <button
@@ -96,6 +97,7 @@ export function QuestionChoiceCards({
             >
                 Далі
             </button>
+            </div>
 
         </div>
       </div>
