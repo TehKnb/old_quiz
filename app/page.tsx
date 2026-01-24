@@ -453,7 +453,7 @@ if (step === 'quiz' && questionIndex === 8) {
 
 
 // ----- CARD CHOICE -----
-if (step === 'quiz' && questionIndex === 8) {
+if (step === 'quiz' && questionIndex === 9) {
   const q = cardQuestions[0];
 
   return (
