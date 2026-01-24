@@ -95,7 +95,7 @@ export function QuestionChoiceMobile({
           disabled={!value}
           className="px-8 py-4 bg-black text-white rounded-2xl disabled:opacity-40"
         >
-          Далі →
+          Далі
         </button>
       </div>
     </div>

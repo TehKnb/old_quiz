@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import { questions, videoDatabase, Question, infoScreens } from './data';
 import { buildFlow, getQuestionProgress } from './flow';
 import { QuestionChoiceMobile } from './QuestionChoiceMobile';
+import { QuestionMultipleCentered } from './QuestionMultipleCentered';
+
 
 /* ===================== TYPES ===================== */
 
@@ -301,23 +303,41 @@ const { progress } = getQuestionProgress(
     return () => clearInterval(interval);
   }, [step]);
 
-  /* ===================== RENDER STUB ===================== */
+ // ----- QUESTION: CHOICE -----
+if (step === 'quiz' && currentQuestion?.type === 'choice') {
+  return (
+    <QuestionChoiceMobile
+      progress={progress}
+      question={{
+        text: currentQuestion.text,
+        options: currentQuestion.options ?? [],
+      }}
+      value={answers[currentQuestion.id] as string | undefined}
+      onSelect={setSingleAnswer}
+      onNext={handleNext}
+      onPrev={currentStepIndex > 0 ? goPrevQuestion : undefined}
+    />
+  );
+}
 
- if (step === 'quiz' && currentQuestion?.type === 'choice') {
-    return (
-      <QuestionChoiceMobile
-        progress={progress}
-        question={{
-          text: currentQuestion.text,
-          options: currentQuestion.options ?? [],
-        }}
-        value={answers[currentQuestion.id] as string | undefined}
-        onSelect={setSingleAnswer}
-        onNext={handleNext}
-        onPrev={currentStepIndex > 0 ? goPrevQuestion : undefined}
-      />
-    );
-  }
+// ----- QUESTION: MULTIPLE -----
+if (step === 'quiz' && currentQuestion?.type === 'multiple') {
+  return (
+    <QuestionMultipleCentered
+      progress={progress}
+      question={{
+        text: currentQuestion.text,
+        helperText: 'Відмітьте всі, що підходять',
+        options: currentQuestion.options ?? [],
+      }}
+      values={(answers[currentQuestion.id] as string[]) ?? []}
+      onToggle={toggleMultipleAnswer}
+      onNext={handleNext}
+      onPrev={currentStepIndex > 0 ? goPrevQuestion : undefined}
+    />
+  );
+}
 
+// ----- FALLBACK -----
 return <div />;
 }
