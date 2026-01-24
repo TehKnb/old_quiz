@@ -42,7 +42,7 @@ export function QuestionChoiceMobile({
             <img
               src="https://i.ibb.co/gbTjSYMm/y-Tr0aw-Rv-FNbbh4nl-Bg-IBSj6-O2r-GXUOtjqhr-EJv0p.png"
               alt=""
-              className="w-full max-w-md rounded-3xl"
+              className="w-full h-auto rounded-3xl"
             />
           </div>
 
