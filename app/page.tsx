@@ -199,7 +199,7 @@ const { progress } = getQuestionProgress(
   useEffect(() => {
     if (step !== 'quiz') return;
     if (!currentQuestion) return;
-    if (!['choice', 'multiple'].includes(currentQuestion.type)) return;
+    if (currentQuestion.type !== 'choice') return;
     if (!hasAnswer()) return;
 
     if (autoNextTimeout.current) {
