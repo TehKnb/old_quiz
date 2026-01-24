@@ -487,6 +487,86 @@ if (step === 'quiz' && questionIndex === 10) {
   );
 }
 
+if (step === 'quiz' && questionIndex === 11) {
+  return (
+    <QuestionChoiceCentered
+      progress={progress}
+      question={{
+        text: currentQuestion!.text,
+        options: currentQuestion!.options ?? [],
+      }}
+      value={answers[currentQuestion!.id] as string | undefined}
+      onSelect={setSingleAnswer}
+      onNext={handleNext}
+      onPrev={goPrevQuestion}
+    />
+  );
+}
+
+if (step === 'quiz' && questionIndex === 12) {
+  return (
+    <QuestionChoiceCentered
+      progress={progress}
+      question={{
+        text: currentQuestion!.text,
+        options: currentQuestion!.options ?? [],
+      }}
+      value={answers[currentQuestion!.id] as string | undefined}
+      onSelect={setSingleAnswer}
+      onNext={handleNext}
+      onPrev={goPrevQuestion}
+    />
+  );
+}
+
+if (step === 'quiz' && questionIndex === 13) {
+  return (
+    <QuestionMultipleCentered
+      progress={progress}
+      question={{
+        text: currentQuestion!.text,
+        helperText: '(оберіть ті, що стосуються вас):',
+        options: currentQuestion!.options ?? [],
+      }}
+      values={(answers[currentQuestion!.id] as string[]) ?? []}
+      onToggle={toggleMultipleAnswer}
+      onNext={handleNext}
+      onPrev={goPrevQuestion}
+    />
+  );
+}
+
+if (step === 'quiz' && questionIndex === 14) {
+  return (
+    <QuestionChoiceCentered
+      progress={progress}
+      question={{
+        text: currentQuestion!.text,
+        options: currentQuestion!.options ?? [],
+      }}
+      value={answers[currentQuestion!.id] as string | undefined}
+      onSelect={setSingleAnswer}
+      onNext={handleNext}
+      onPrev={goPrevQuestion}
+    />
+  );
+}
+
+if (step === 'quiz' && questionIndex === 15) {
+  return (
+    <QuestionChoiceCentered
+      progress={progress}
+      question={{
+        text: currentQuestion!.text,
+        options: currentQuestion!.options ?? [],
+      }}
+      value={answers[currentQuestion!.id] as string | undefined}
+      onSelect={setSingleAnswer}
+      onNext={handleNext}
+      onPrev={goPrevQuestion}
+    />
+  );
+}
 
 // ----- FALLBACK -----
 return <div />;
