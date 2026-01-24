@@ -1,7 +1,13 @@
 // data.ts
 // Структура даних для квіза
 
-export type QuestionType = 'text' | 'choice' | 'multiple';
+export type QuestionType = 'text' | 'choice' | 'multiple' | 'choice-card';
+
+export type CardOption = {
+  label: string;
+  image: string;
+};
+
 
 export interface Question {
   id: string;
@@ -13,6 +19,17 @@ export interface Question {
   helperText?: string;
 }
 
+export type CardQuestion = {
+  id: string;
+  text: string;
+  subtitle?: string;
+  type: 'choice-card';
+  options: {
+    label: string;
+    image: string;
+  }[];
+};
+
 export interface VideoCase {
   id: string;
   nicheTags: string[];
@@ -21,6 +38,28 @@ export interface VideoCase {
   videoId: string;
   platform: 'youtube' | 'vimeo';
 }
+
+export const cardQuestions: CardQuestion[] = [
+  {
+    id: 'team_size',
+    text: 'Що ви продаєте?',
+    type: 'choice-card',
+    options: [
+      {
+        label: 'Товари',
+        image: 'https://i.ibb.co/RGHwxCh6/1.jpg',
+      },
+      {
+        label: 'Послуги',
+        image: 'img src="https://i.ibb.co/67vpK1qZ/1.jpg',
+      },
+      {
+        label: 'І те і інше',
+        image: 'https://i.ibb.co/XkkrGGb7/1.jpg',
+      },
+    ],
+  },
+];
 
 // 1. СПИСОК ПИТАНЬ (15 штук на базі старого квіза)
 export const questions: Question[] = [

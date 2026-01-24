@@ -7,6 +7,8 @@ import { QuestionChoiceMobile } from './QuestionChoiceMobile';
 import { QuestionMultipleCentered } from './QuestionMultipleCentered';
 import { QuestionChoiceCentered } from './QuestionChoiceCentered';
 import { QuestionTextCentered } from './QuestionTextCentered';
+import { QuestionChoiceCards } from './QuestionChoiceCards';
+import { cardQuestions } from './data';
 
 
 /* ===================== TYPES ===================== */
@@ -46,6 +48,7 @@ type LoadingStage = {
 };
 
 /* ===================== COMPONENT ===================== */
+
 
 export default function Home() {
   /* ---------- CORE STATE ---------- */
@@ -414,7 +417,6 @@ if (step === 'quiz' && questionIndex === 6) {
   );
 }
 
-// ----- 5-й ВАРІАНТ: text -----
 if (step === 'quiz' && questionIndex === 7) {
   return (
     <QuestionTextCentered
@@ -427,6 +429,42 @@ if (step === 'quiz' && questionIndex === 7) {
       value={answers[currentQuestion!.id] as string | undefined}
       onChange={setTextAnswer}
       onNext={handleNext}
+      onPrev={goPrevQuestion}
+    />
+  );
+}
+
+if (step === 'quiz' && questionIndex === 8) {
+  return (
+    <QuestionChoiceCentered
+      progress={progress}
+      question={{
+        text: currentQuestion!.text,
+        options: currentQuestion!.options ?? [],
+      }}
+      value={answers[currentQuestion!.id] as string | undefined}
+      onSelect={setSingleAnswer}
+      onNext={handleNext}
+      onPrev={goPrevQuestion}
+    />
+  );
+}
+
+
+
+// ----- CARD CHOICE -----
+if (step === 'quiz' && questionIndex === 8) {
+  const q = cardQuestions[0];
+
+  return (
+    <QuestionChoiceCards
+      progress={progress}
+      question={q}
+      value={answers[q.id] as string | undefined}
+      onSelect={(v) => {
+        setSingleAnswer(v);
+        setTimeout(handleNext, 300);
+      }}
       onPrev={goPrevQuestion}
     />
   );
