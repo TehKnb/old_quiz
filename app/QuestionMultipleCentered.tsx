@@ -39,14 +39,14 @@ export function QuestionMultipleCentered({
         <div className="w-full max-w-4xl">
 
           {/* QUESTION */}
-          <h1 className="text-2xl md:text-4xl font-bold text-center mb-2">
+          <h2 className="text-2xl md:text-4xl font-bold text-center mb-4">
             {question.text}
-          </h1>
+          </h2>
 
           {/* HELPER TEXT */}
           {question.helperText && (
-            <p className="text-sm md:text-base text-slate-500 text-center mb-8">
-              {question.helperText}
+            <p className="text-sm text-center text-slate-500 mb-6">
+                {question.helperText}
             </p>
           )}
 
