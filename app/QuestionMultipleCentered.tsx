@@ -34,7 +34,7 @@ export function QuestionMultipleCentered({
         </div>
       </div>
 
-      {/* CONTENT */}
+            {/* CONTENT */}
       <div className="flex-1 flex items-center justify-center">
         <div className="w-full max-w-4xl">
 
@@ -71,29 +71,29 @@ export function QuestionMultipleCentered({
               );
             })}
           </div>
+
+          {/* BUTTONS — ТЕПЕР В ТОЙ ЖЕ ШИРИНІ */}
+          <div className="flex justify-between items-center">
+            {onPrev ? (
+              <button onClick={onPrev} className="text-slate-500">
+                Назад
+              </button>
+            ) : (
+              <div />
+            )}
+
+            <button
+              onClick={onNext}
+              disabled={values.length === 0}
+              className="px-8 py-4 bg-black text-white rounded-2xl disabled:opacity-40"
+            >
+              Далі
+            </button>
+          </div>
+
         </div>
-        {/* BUTTONS */}
-      <div className="flex justify-between items-center pt-4">
-        {onPrev ? (
-          <button onClick={onPrev} className="text-slate-500">
-            Назад
-          </button>
-        ) : (
-          <div />
-        )}
-
-        <button
-          onClick={onNext}
-          disabled={values.length === 0}
-          className="px-8 py-4 bg-black text-white rounded-2xl disabled:opacity-40"
-        >
-          Далі
-        </button>
       </div>
 
-      </div>
-
-      
     </div>
   );
 }
