@@ -50,7 +50,7 @@ export function QuestionChoiceMobile({
           <div className="w-full flex flex-col justify-center">
 
             {/* QUESTION */}
-            <h1 className="text-xl font-bold text-center md:text-left mb-6">
+            <h1 className="text-2xl md:text-4xl font-bold text-center mb-6">
               {question.text}
             </h1>
 
