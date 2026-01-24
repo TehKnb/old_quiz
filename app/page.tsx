@@ -5,6 +5,7 @@ import { questions, videoDatabase, Question, infoScreens } from './data';
 import { buildFlow, getQuestionProgress } from './flow';
 import { QuestionChoiceMobile } from './QuestionChoiceMobile';
 import { QuestionMultipleCentered } from './QuestionMultipleCentered';
+import { QuestionChoiceCentered } from './QuestionChoiceCentered';
 
 
 /* ===================== TYPES ===================== */
@@ -334,6 +335,27 @@ if (step === 'quiz' && currentQuestion?.type === 'multiple') {
       onToggle={toggleMultipleAnswer}
       onNext={handleNext}
       onPrev={currentStepIndex > 0 ? goPrevQuestion : undefined}
+    />
+  );
+}
+
+// ----- 3-й ВАРІАНТ: choice без картинки -----
+if (
+  step === 'quiz' &&
+  currentQuestion?.type === 'choice' &&
+  currentQuestion.id !== 'marketing_understanding' // перший варіант
+) {
+  return (
+    <QuestionChoiceCentered
+      progress={progress}
+      question={{
+        text: currentQuestion.text,
+        options: currentQuestion.options ?? [],
+      }}
+      value={answers[currentQuestion.id] as string | undefined}
+      onSelect={setSingleAnswer}
+      onNext={handleNext}
+      onPrev={goPrevQuestion}
     />
   );
 }
