@@ -21,15 +21,15 @@ export function QuestionChoiceCentered({
   return (
     <div className="min-h-screen bg-white flex flex-col">
 
-      {/* PROGRESS — ВСЯ ШИРИНА */}
-      <div className="w-full">
-        <div className="h-[3px] bg-slate-200">
-          <div
+        {/* PROGRESS */}
+        <div className="w-full px-4 pt-4 md:pt-6">
+        <div className="h-[3px] bg-slate-200 rounded-full overflow-hidden">
+            <div
             className="h-full bg-black transition-all"
             style={{ width: `${progress}%` }}
-          />
+            />
         </div>
-      </div>
+        </div>
 
       {/* CONTENT */}
       <div className="flex-1 flex items-center justify-center px-4">
