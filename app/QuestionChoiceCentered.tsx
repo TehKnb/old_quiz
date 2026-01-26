@@ -1,5 +1,7 @@
 'use client';
 
+import { ProgressBar } from './components/ProgressBar';
+
 type Props = {
   progress: number;
   question: {
@@ -25,14 +27,7 @@ export function QuestionChoiceCentered({
     <div className="min-h-screen bg-white flex flex-col text-slate-900">
 
       {/* PROGRESS */}
-      <div className="w-full px-4 pt-4 md:pt-6">
-        <div className="h-[3px] bg-slate-200 rounded-full overflow-hidden">
-          <div
-            className="h-full bg-black transition-all"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-      </div>
+      <ProgressBar value={progress} />
 
       {/* CONTENT */}
       <div className="flex-1 flex items-center justify-center px-4">

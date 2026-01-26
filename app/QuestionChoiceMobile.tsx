@@ -1,5 +1,7 @@
 'use client';
 
+import { ProgressBar } from './components/ProgressBar';
+
 type Props = {
   progress: number;
   imageUrl: string;
@@ -27,14 +29,7 @@ export function QuestionChoiceMobile({
     <div className="min-h-screen bg-white px-4 py-4 flex flex-col text-slate-900">
 
       {/* PROGRESS */}
-      <div className="mb-4">
-        <div className="h-[3px] w-full bg-slate-200 rounded-full overflow-hidden">
-          <div
-            className="h-full bg-black transition-all"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-      </div>
+      <ProgressBar value={progress} />
 
       {/* MAIN CONTENT */}
       <div className="flex-1 flex items-center">
