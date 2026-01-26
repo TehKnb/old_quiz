@@ -36,7 +36,7 @@ export function QuestionChoiceMobile({
       flex flex-col
       md:grid md:grid-cols-2 md:gap-8
       items-center
-      md:max-h-[500px]
+      md:max-h-[350px]
       md:overflow-hidden">
 
           {/* IMAGE */}
