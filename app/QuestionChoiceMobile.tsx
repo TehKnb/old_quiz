@@ -2,7 +2,7 @@
 
 type Props = {
   progress: number;
-  imageUrl: string; // 👈 ДОДАЛИ
+  imageUrl: string;
   question: {
     text: string;
     subtitle?: string;
@@ -16,7 +16,7 @@ type Props = {
 
 export function QuestionChoiceMobile({
   progress,
-  imageUrl, // 👈
+  imageUrl,
   question,
   value,
   onSelect,
@@ -24,13 +24,13 @@ export function QuestionChoiceMobile({
   onPrev,
 }: Props) {
   return (
-    <div className="min-h-screen bg-white px-4 py-4 flex flex-col">
+    <div className="min-h-screen bg-white px-4 py-4 flex flex-col text-slate-900">
 
       {/* PROGRESS */}
       <div className="mb-4">
         <div className="h-[3px] w-full bg-slate-200 rounded-full overflow-hidden">
           <div
-            className="h-full bg-black"
+            className="h-full bg-black transition-all"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -53,14 +53,15 @@ export function QuestionChoiceMobile({
           <div className="w-full flex flex-col justify-center">
 
             {/* QUESTION */}
-            <h1 className="text-2xl md:text-4xl font-bold text-center mb-6">
+            <h1 className="text-2xl md:text-4xl font-bold text-center mb-6 text-slate-900">
               {question.text}
             </h1>
 
+            {/* SUBTITLE */}
             {question.subtitle && (
-            <p className="text-sm md:text-base text-slate-500 text-center mb-8">
+              <p className="text-sm md:text-base text-slate-600 text-center mb-8">
                 {question.subtitle}
-            </p>
+              </p>
             )}
 
             {/* OPTIONS */}
@@ -71,12 +72,16 @@ export function QuestionChoiceMobile({
                 return (
                   <button
                     key={opt}
+                    type="button"
                     onClick={() => onSelect(opt)}
                     className={`
                       px-4 py-4 rounded-2xl text-left transition
-                      ${active
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-white border border-slate-300 text-black hover:border-slate-400'}
+                      font-medium
+                      ${
+                        active
+                          ? 'bg-blue-600 text-white'
+                          : 'bg-white border border-slate-300 text-slate-900 hover:border-slate-400'
+                      }
                     `}
                   >
                     {opt}
@@ -92,7 +97,10 @@ export function QuestionChoiceMobile({
       {/* BUTTONS */}
       <div className="flex justify-between items-center pt-4">
         {onPrev ? (
-          <button onClick={onPrev} className="text-slate-500">
+          <button
+            onClick={onPrev}
+            className="text-slate-600 hover:text-slate-900 transition"
+          >
             Назад
           </button>
         ) : (
@@ -102,7 +110,7 @@ export function QuestionChoiceMobile({
         <button
           onClick={onNext}
           disabled={!value}
-          className="px-8 py-4 bg-black text-white rounded-2xl disabled:opacity-40"
+          className="px-8 py-4 bg-black text-white rounded-2xl disabled:opacity-40 transition"
         >
           Далі
         </button>

@@ -22,7 +22,7 @@ export function QuestionTextCentered({
   onPrev,
 }: Props) {
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col text-slate-900">
 
       {/* PROGRESS */}
       <div className="w-full px-4 pt-4 md:pt-6">
@@ -39,13 +39,13 @@ export function QuestionTextCentered({
         <div className="w-full max-w-2xl flex flex-col items-center text-center">
 
           {/* QUESTION */}
-          <h2 className="text-2xl md:text-4xl font-bold mb-4">
+          <h2 className="text-2xl md:text-4xl font-bold mb-4 text-slate-900">
             {question.text}
           </h2>
 
           {/* SUBTITLE */}
           {question.subtitle && (
-            <p className="text-sm md:text-base text-slate-500 mb-8">
+            <p className="text-sm md:text-base text-slate-600 mb-8">
               {question.subtitle}
             </p>
           )}
@@ -64,13 +64,19 @@ export function QuestionTextCentered({
               border border-transparent
               focus:outline-none focus:border-black
               text-base
+              text-slate-900
+              placeholder:text-slate-400
+              [color-scheme:light]
             "
           />
 
           {/* NAV */}
           <div className="flex justify-between w-full max-w-md mt-10">
             {onPrev ? (
-              <button onClick={onPrev} className="text-slate-500">
+              <button
+                onClick={onPrev}
+                className="text-slate-600 hover:text-slate-900 transition"
+              >
                 Назад
               </button>
             ) : (
@@ -80,7 +86,7 @@ export function QuestionTextCentered({
             <button
               onClick={onNext}
               disabled={!value || !value.trim()}
-              className="px-8 py-4 rounded-2xl bg-black text-white disabled:opacity-40"
+              className="px-8 py-4 rounded-2xl bg-black text-white disabled:opacity-40 transition"
             >
               Далі
             </button>

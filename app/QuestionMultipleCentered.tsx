@@ -22,30 +22,30 @@ export function QuestionMultipleCentered({
   onPrev,
 }: Props) {
   return (
-    <div className="min-h-screen bg-white px-4 py-4 flex flex-col">
+    <div className="min-h-screen bg-white px-4 py-4 flex flex-col text-slate-900">
 
       {/* PROGRESS */}
       <div className="mb-6">
         <div className="h-[3px] w-full bg-slate-200 rounded-full overflow-hidden">
           <div
-            className="h-full bg-black"
+            className="h-full bg-black transition-all"
             style={{ width: `${progress}%` }}
           />
         </div>
       </div>
 
-            {/* CONTENT */}
+      {/* CONTENT */}
       <div className="flex-1 flex items-center justify-center">
         <div className="w-full max-w-4xl">
 
           {/* QUESTION */}
-          <h1 className="text-2xl md:text-4xl font-bold text-center mb-2">
+          <h1 className="text-2xl md:text-4xl font-bold text-center mb-2 text-slate-900">
             {question.text}
           </h1>
 
           {/* HELPER TEXT */}
           {question.helperText && (
-            <p className="text-sm md:text-base text-slate-500 text-center mb-8">
+            <p className="text-sm md:text-base text-slate-600 text-center mb-8">
               {question.helperText}
             </p>
           )}
@@ -58,12 +58,16 @@ export function QuestionMultipleCentered({
               return (
                 <button
                   key={opt}
+                  type="button"
                   onClick={() => onToggle(opt)}
                   className={`
                     px-4 py-4 rounded-2xl text-left transition
-                    ${active
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-white border border-slate-300 text-black hover:border-slate-400'}
+                    font-medium
+                    ${
+                      active
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-white border border-slate-300 text-slate-900 hover:border-slate-400'
+                    }
                   `}
                 >
                   {opt}
@@ -72,10 +76,13 @@ export function QuestionMultipleCentered({
             })}
           </div>
 
-          {/* BUTTONS — ТЕПЕР В ТОЙ ЖЕ ШИРИНІ */}
+          {/* BUTTONS */}
           <div className="flex justify-between items-center">
             {onPrev ? (
-              <button onClick={onPrev} className="text-slate-500">
+              <button
+                onClick={onPrev}
+                className="text-slate-600 hover:text-slate-900 transition"
+              >
                 Назад
               </button>
             ) : (
@@ -85,7 +92,7 @@ export function QuestionMultipleCentered({
             <button
               onClick={onNext}
               disabled={values.length === 0}
-              className="px-8 py-4 bg-black text-white rounded-2xl disabled:opacity-40"
+              className="px-8 py-4 bg-black text-white rounded-2xl disabled:opacity-40 transition"
             >
               Далі
             </button>

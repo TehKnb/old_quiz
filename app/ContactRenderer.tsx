@@ -35,16 +35,16 @@ export function ContactRenderer({
     phone.length === 12;
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
+    <div className="min-h-screen flex items-center justify-center px-4 bg-white text-slate-900">
       <div className="w-full max-w-xl">
 
         {/* TITLE */}
-        <h2 className="text-3xl md:text-4xl font-bold mb-6">
+        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900">
           Ми вже аналізуємо ваші відповіді.
         </h2>
 
         {/* DESCRIPTION */}
-        <p className="text-slate-600 mb-10 leading-relaxed">
+        <p className="text-slate-700 mb-10 leading-relaxed">
           Для того, щоб отримати більш детальну інформацію про ситуацію
           у вашому бізнесі та про те, як наша навчальна програма може
           допомогти вам примножити чистий прибуток — залиште контактні дані:
@@ -58,32 +58,46 @@ export function ContactRenderer({
             value={name}
             onChange={(e) => onChange('name', e.target.value)}
             placeholder="Імʼя*"
-            className="w-full px-4 py-4 rounded-xl bg-slate-100 outline-none focus:ring-2 focus:ring-black"
+            className="
+              w-full px-4 py-4 rounded-xl
+              bg-slate-100
+              text-slate-900
+              placeholder:text-slate-500
+              outline-none
+              focus:ring-2 focus:ring-black
+            "
           />
 
           {/* PHONE */}
           <div className="flex gap-3">
 
-            {/* COUNTRY CODE (STATIC) */}
-            <div className="flex items-center gap-2 px-4 py-4 bg-slate-100 rounded-xl">
+            {/* COUNTRY CODE */}
+            <div className="flex items-center gap-2 px-4 py-4 bg-slate-100 rounded-xl text-slate-900">
               <span className="text-xl">🇺🇦</span>
               <span className="font-medium">+380</span>
             </div>
 
             {/* PHONE INPUT */}
             <input
-              value={phone.slice(3)} // показуємо тільки 9 цифр
+              value={phone.slice(3)}
               onChange={(e) =>
                 handlePhoneChange('380' + e.target.value)
               }
               placeholder="XX XXX XXXX*"
               inputMode="numeric"
-              className="flex-1 px-4 py-4 rounded-xl bg-slate-100 outline-none focus:ring-2 focus:ring-black"
+              className="
+                flex-1 px-4 py-4 rounded-xl
+                bg-slate-100
+                text-slate-900
+                placeholder:text-slate-500
+                outline-none
+                focus:ring-2 focus:ring-black
+              "
             />
           </div>
 
           {/* CHECKBOX */}
-          <label className="flex items-start gap-3 text-sm text-slate-600">
+          <label className="flex items-start gap-3 text-sm text-slate-700">
             <input type="checkbox" defaultChecked className="mt-1" />
             <span>
               Я погоджуюсь з{' '}
@@ -98,7 +112,12 @@ export function ContactRenderer({
           <button
             onClick={onSubmit}
             disabled={!isValid}
-            className="w-full py-5 bg-black text-white rounded-2xl text-lg disabled:opacity-40"
+            className="
+              w-full py-5
+              bg-black text-white
+              rounded-2xl text-lg
+              disabled:opacity-40
+            "
           >
             Отримати результат
           </button>

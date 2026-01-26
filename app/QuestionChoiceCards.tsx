@@ -22,7 +22,7 @@ export function QuestionChoiceCards({
   onPrev,
 }: Props) {
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col text-slate-900">
 
       {/* PROGRESS */}
       <div className="w-full px-4 pt-4">
@@ -39,7 +39,7 @@ export function QuestionChoiceCards({
         <div className="w-full max-w-5xl">
 
           {/* QUESTION */}
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-10">
+          <h2 className="text-2xl md:text-4xl font-bold text-center mb-10 text-slate-900">
             {question.text}
           </h2>
 
@@ -52,12 +52,17 @@ export function QuestionChoiceCards({
               return (
                 <button
                   key={opt.label}
+                  type="button"
                   onClick={() => onSelect(opt.label)}
                   className={`
-                    rounded-2xl overflow-hidden transition border bg-white
-                    ${active
-                      ? 'border-blue-600 ring-2 ring-blue-600'
-                      : 'border-slate-200 hover:border-slate-300'}
+                    rounded-2xl overflow-hidden transition
+                    border bg-white
+                    text-slate-900
+                    ${
+                      active
+                        ? 'border-blue-600 ring-2 ring-blue-600'
+                        : 'border-slate-200 hover:border-slate-300'
+                    }
                     ${isThirdMobile
                       ? 'col-span-2 justify-self-center max-w-[260px]'
                       : ''}
@@ -76,8 +81,11 @@ export function QuestionChoiceCards({
                   {/* LABEL */}
                   <div
                     className={`
-                      py-3 md:py-4 text-center font-medium
-                      ${active ? 'text-blue-600' : 'text-slate-800'}
+                      py-3 md:py-4
+                      text-center
+                      font-medium
+                      text-slate-900
+                      ${active ? 'text-blue-600' : ''}
                     `}
                   >
                     {opt.label}
@@ -90,7 +98,10 @@ export function QuestionChoiceCards({
           {/* NAV */}
           <div className="mt-10 flex justify-between items-center">
             {onPrev ? (
-              <button onClick={onPrev} className="text-slate-500">
+              <button
+                onClick={onPrev}
+                className="text-slate-600 hover:text-slate-900 transition"
+              >
                 Назад
               </button>
             ) : (
