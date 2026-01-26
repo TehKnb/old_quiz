@@ -27,15 +27,15 @@ export function QuestionChoiceMobile({
   onPrev,
 }: Props) {
   return (
-    <div className="min-h-screen bg-white px-4 py-4 flex flex-col text-slate-900">
-
+    <div className="min-h-screen bg-white px-4 py-2 flex flex-col text-slate-900">
+      {/* ⬆️ було py-4 → стало py-2 */}
 
       {/* MAIN CONTENT */}
       <div className="flex-1 flex items-center">
         <div className="w-full flex flex-col md:grid md:grid-cols-2 md:gap-10 items-center">
 
           {/* IMAGE */}
-          <div className="w-full flex justify-center items-center mb-4 md:mb-0 max-h-[480px]">
+          <div className="w-full flex justify-center items-center mb-4 md:mb-0">
             <img
               src={imageUrl}
               alt=""
@@ -44,7 +44,7 @@ export function QuestionChoiceMobile({
           </div>
 
           {/* QUESTION + OPTIONS */}
-          <div className="w-full flex flex-col justify-center max-h-[4800px]">
+          <div className="w-full flex flex-col justify-center">
 
             {/* QUESTION */}
             <h1 className="text-2xl md:text-4xl font-bold text-center mb-6 text-slate-900">
@@ -89,7 +89,9 @@ export function QuestionChoiceMobile({
       </div>
 
       {/* BUTTONS */}
-      <div className="flex justify-between items-center pt-4">
+      <div className="flex justify-between items-center pt-2">
+        {/* ⬆️ було pt-4 → стало pt-2 */}
+
         {onPrev ? (
           <button
             onClick={onPrev}
