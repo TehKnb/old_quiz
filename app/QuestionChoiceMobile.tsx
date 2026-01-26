@@ -35,7 +35,7 @@ export function QuestionChoiceMobile({
         <div className="w-full flex flex-col md:grid md:grid-cols-2 md:gap-10 items-center">
 
           {/* IMAGE */}
-          <div className="w-full flex justify-center items-center mb-4 md:mb-0 max-h-[520px]">
+          <div className="w-full flex justify-center items-center mb-4 md:mb-0 max-h-[480px]">
             <img
               src={imageUrl}
               alt=""
@@ -44,7 +44,7 @@ export function QuestionChoiceMobile({
           </div>
 
           {/* QUESTION + OPTIONS */}
-          <div className="w-full flex flex-col justify-center max-h-[520px]">
+          <div className="w-full flex flex-col justify-center max-h-[4800px]">
 
             {/* QUESTION */}
             <h1 className="text-2xl md:text-4xl font-bold text-center mb-6 text-slate-900">
