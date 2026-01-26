@@ -355,6 +355,7 @@ if (step === 'quiz' && currentStep?.type === 'info') {
       text={currentStep.info.text}
       imageUrl={currentStep.info.imageUrl}
       onNext={handleNext}
+      onPrev={goPrevQuestion} 
     />
   );
 }
