@@ -6,54 +6,54 @@ export function GiftPopover() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="relative flex justify-center">
-      {/* GIFT BUTTON */}
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        className="
-          flex items-center justify-center
-          w-10 h-10
-          rounded-full
-          bg-slate-100
-          hover:bg-slate-200
-          transition
-          text-xl
-        "
-        aria-label="Подарунок"
-      >
-        🎁
-      </button>
+    <div
+      className={`
+        transition-all duration-300 ease-out
+        ${
+          open
+            ? 'w-full max-w-[320px]'
+            : 'w-10'
+        }
+      `}
+    >
+      {/* COLLAPSED */}
+      {!open && (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="
+            w-10 h-10
+            flex items-center justify-center
+            rounded-full
+            bg-slate-100
+            hover:bg-slate-200
+            transition
+            text-xl
+          "
+          aria-label="Подарунок"
+        >
+          🎁
+        </button>
+      )}
 
-      {/* POPOVER */}
+      {/* EXPANDED */}
       {open && (
         <div
           className="
-            absolute
-            bottom-14
-            left-1/2
-            -translate-x-1/2
-            w-[280px]
-            rounded-2xl
+            flex items-center gap-3
             bg-gradient-to-r from-indigo-50 to-blue-50
             border border-blue-100
-            shadow-lg
-            px-5 py-4
-            z-50
-            text-center
+            rounded-2xl
+            px-4 py-3
+            shadow-sm
           "
         >
-          <div className="flex items-center justify-center gap-3 mb-2">
-            <span className="text-3xl">🎁</span>
-            <span className="font-semibold text-slate-900 text-sm">
-              ЧІТКИЙ ПЛАН РОСТУ
-            </span>
-          </div>
+          <span className="text-2xl">🎁</span>
 
-          <p className="text-sm text-slate-700 leading-snug">
-            та <span className="font-semibold">знижка 50%</span><br />
-            на навчання
-          </p>
+          <span className="text-sm font-medium text-slate-800 leading-tight">
+            ЧІТКИЙ ПЛАН РОСТУ<br />
+            та знижка <span className="font-semibold">50%</span> на навчання
+          </span>
         </div>
       )}
     </div>
