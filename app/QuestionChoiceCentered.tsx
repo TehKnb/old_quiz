@@ -29,7 +29,15 @@ export function QuestionChoiceCentered({
 
 
       {/* CONTENT */}
-      <div className="flex-1 flex items-start md:items-center px-4 pt-6 md:pt-0">
+      <div
+        className="
+          flex-1 flex
+          items-start md:items-center
+          justify-start md:justify-center
+          px-4
+          pt-6 md:pt-0
+        "
+      >
         <div className="w-full max-w-3xl">
 
           <div className="flex flex-col items-center text-center">
