@@ -1,6 +1,7 @@
 'use client';
 
 import { ProgressBar } from './components/ProgressBar';
+import { GiftPopover } from './components/GiftPopover';
 
 type Props = {
   progress: number;
@@ -83,6 +84,8 @@ export function QuestionChoiceCentered({
               ) : (
                 <div />
               )}
+
+              <GiftPopover />
 
               <button
                 onClick={onNext}
