@@ -13,6 +13,8 @@ import { ContactRenderer } from './ContactRenderer';
 import { ResultRenderer } from './ResultRenderer';
 import { LoadingRenderer } from './LoadingRenderer';
 import { QuizLayout  } from './components/QuizLayout';
+import { ResultStaticView } from './ResultStaticView';
+
 
 
 /* ===================== TYPES ===================== */
@@ -622,14 +624,18 @@ if (step === 'loading') {
 }
 
 // ----- RESULT -----
-if (step === 'result' && resultData) {
-  return (
-    <ResultRenderer
-      sellingText={resultData.sellingText}
-      video={resultData.video}
-    />
-  );
+if (step === 'result') {
+  return <ResultStaticView />;
 }
+
+//if (step === 'result' && resultData) {
+//  return (
+//    <ResultRenderer
+//      sellingText={resultData.sellingText}
+//      video={resultData.video}
+//    />
+//  );
+//}
 
 
 // ----- FALLBACK -----
