@@ -1,5 +1,7 @@
 'use client';
 
+import { GiftPopover } from './components/GiftPopover';
+
 type Props = {
   title: string;
   text: string;
@@ -43,11 +45,7 @@ export function InfoScreenCentered({
         )}
 
         {/* TEXT */}
-        <div
-          className={`
-            ${hasImage ? 'text-center md:text-left' : 'text-center'}
-          `}
-        >
+        <div className={`${hasImage ? 'text-center md:text-left' : 'text-center'}`}>
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
             {title}
           </h1>
@@ -56,28 +54,38 @@ export function InfoScreenCentered({
             {text}
           </p>
 
-          {/* BUTTONS */}
-          <div
-            className={`
-              flex items-center
-              ${hasImage ? 'justify-start gap-6' : 'justify-center gap-6'}
-            `}
-          >
-            {onPrev && (
-              <button
-                onClick={onPrev}
-                className="text-slate-600 hover:text-slate-900 transition"
-              >
-                Назад
-              </button>
-            )}
+          {/* NAV BAR */}
+          <div className="w-full max-w-xl mx-auto md:mx-0">
+            <div className="flex items-center justify-between gap-4">
 
-            <button
-              onClick={onNext}
-              className="px-8 py-4 bg-blue-600 text-white rounded-2xl font-medium hover:bg-blue-700 transition"
-            >
-              Продовжити
-            </button>
+              {/* BACK */}
+              <div className="flex-1">
+                {onPrev && (
+                  <button
+                    onClick={onPrev}
+                    className="w-full text-left text-slate-600 hover:text-slate-900 transition"
+                  >
+                    Назад
+                  </button>
+                )}
+              </div>
+
+              {/* GIFT */}
+              <div className="flex justify-center shrink-0">
+                <GiftPopover />
+              </div>
+
+              {/* NEXT */}
+              <div className="flex-1 flex justify-end">
+                <button
+                  onClick={onNext}
+                  className="w-full md:w-auto px-8 py-4 bg-blue-600 text-white rounded-2xl font-medium hover:bg-blue-700 transition"
+                >
+                  Далі
+                </button>
+              </div>
+
+            </div>
           </div>
         </div>
 
