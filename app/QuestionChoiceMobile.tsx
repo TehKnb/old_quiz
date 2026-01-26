@@ -1,6 +1,5 @@
 'use client';
 
-import { ProgressBar } from './components/ProgressBar';
 import { GiftPopover } from './components/GiftPopover';
 
 type Props = {
@@ -18,7 +17,6 @@ type Props = {
 };
 
 export function QuestionChoiceMobile({
-  progress,
   imageUrl,
   question,
   value,
@@ -27,15 +25,14 @@ export function QuestionChoiceMobile({
   onPrev,
 }: Props) {
   return (
-    <div className="min-h-screen bg-white px-4 py-4 flex flex-col text-slate-900">
+    <div className="min-h-screen bg-white px-4 py-6 flex flex-col text-slate-900">
 
-
-      {/* MAIN CONTENT */}
-      <div className="flex-1 flex items-center">
-        <div className="w-full flex flex-col md:grid md:grid-cols-2 md:gap-10 items-center">
+      {/* ===== MAIN CONTENT ===== */}
+      <div className="flex-1 w-full">
+        <div className="w-full max-w-5xl mx-auto flex flex-col md:grid md:grid-cols-2 md:gap-10">
 
           {/* IMAGE */}
-          <div className="w-full flex justify-center items-center mb-4 md:mb-0">
+          <div className="w-full flex justify-center mb-6 md:mb-0">
             <img
               src={imageUrl}
               alt=""
@@ -44,10 +41,10 @@ export function QuestionChoiceMobile({
           </div>
 
           {/* QUESTION + OPTIONS */}
-          <div className="w-full flex flex-col justify-center">
+          <div className="w-full flex flex-col">
 
             {/* QUESTION */}
-            <h1 className="text-2xl md:text-4xl font-bold text-center mb-6 text-slate-900">
+            <h1 className="text-2xl md:text-4xl font-bold text-center mb-6">
               {question.text}
             </h1>
 
@@ -59,7 +56,7 @@ export function QuestionChoiceMobile({
             )}
 
             {/* OPTIONS */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {question.options.map((opt) => {
                 const active = value === opt;
 
@@ -83,13 +80,13 @@ export function QuestionChoiceMobile({
                 );
               })}
             </div>
-          </div>
 
+          </div>
         </div>
       </div>
 
-      {/* BUTTONS */}
-      <div className="flex justify-between items-center pt-4">
+      {/* ===== NAV (ALWAYS VISIBLE) ===== */}
+      <div className="w-full max-w-5xl mx-auto pt-8 flex justify-between items-center">
         {onPrev ? (
           <button
             onClick={onPrev}
@@ -111,6 +108,7 @@ export function QuestionChoiceMobile({
           Далі
         </button>
       </div>
+
     </div>
   );
 }
