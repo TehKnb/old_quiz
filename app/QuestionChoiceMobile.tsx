@@ -32,7 +32,12 @@ export function QuestionChoiceMobile({
 
       {/* MAIN CONTENT */}
       <div className="flex-1 flex items-center">
-        <div className="w-full flex flex-col md:grid md:grid-cols-2 md:gap-10 items-center">
+        <div className="      w-full
+      flex flex-col
+      md:grid md:grid-cols-2 md:gap-8
+      items-center
+      md:max-h-[500px]
+      md:overflow-hidden">
 
           {/* IMAGE */}
           <div className="w-full flex justify-center items-center mb-4 md:mb-0">
