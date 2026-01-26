@@ -52,9 +52,38 @@ export function InfoScreenCentered({
           </h1>
           )}
 
+          {typeof text === 'string' && (
           <p className="text-slate-700 mb-10 leading-relaxed max-w-xl mx-auto md:mx-0">
             {text}
           </p>
+          )}
+
+          {Array.isArray(text) && (
+            <div className="space-y-4">
+                {text.map((block, idx) => {
+                if (block.type === 'quote') {
+                    return (
+                    <div
+                        key={idx}
+                        className="bg-slate-100 rounded-2xl px-6 py-4 text-center"
+                    >
+                        <p className="text-slate-800 italic mb-2">
+                        “{block.content}”
+                        </p>
+                        {block.author && (
+                        <p className="text-sm text-slate-500">
+                            — {block.author}
+                        </p>
+                        )}
+                    </div>
+                    );
+                }
+
+                return null;
+                })}
+            </div>
+            )}
+
 
           {/* NAV BAR */}
           <div className="w-full max-w-xl mx-auto md:mx-0">
