@@ -84,7 +84,7 @@ export default function Home() {
   const leadSentRef = useRef(false);
 
   /* ---------- FLOW ---------- */
-  const flow = buildFlow(questions, []);
+  const flow = buildFlow(questions, infoScreens);
   const currentStep = flow[currentStepIndex];
 
   const currentQuestion: Question | null =
@@ -348,6 +348,16 @@ const { progress } = getQuestionProgress(
     return () => clearInterval(interval);
   }, [step]);
 
+if (step === 'quiz' && currentStep?.type === 'info') {
+  return (
+    <InfoScreenCentered
+      title={currentStep.info.title}
+      text={currentStep.info.text}
+      onNext={handleNext}
+    />
+  );
+}
+
  // ----- QUESTION: CHOICE -----
 if (step === 'quiz' && questionIndex === 1) {
   return (
@@ -365,16 +375,6 @@ if (step === 'quiz' && questionIndex === 1) {
         onNext={handleNext}
       />
     </QuizLayout>
-  );
-}
-
-if (step === 'quiz' && currentStep?.type === 'info') {
-  return (
-    <InfoScreenCentered
-      title={currentStep.info.title}
-      text={currentStep.info.text}
-      onNext={handleNext}
-    />
   );
 }
 
