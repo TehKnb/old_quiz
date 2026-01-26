@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+
 type Props = {
   name: string;
   phone: string;
@@ -13,6 +15,24 @@ export function ContactRenderer({
   onChange,
   onSubmit,
 }: Props) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async () => {
+  if (isSubmitting) return; // ⛔ анти-спам кліків
+
+  setIsSubmitting(true);
+
+  try {
+    // якщо onSubmit синхронний — це ОК
+    await Promise.resolve(onSubmit());
+
+    // якщо хочеш micro-loading (рекомендую)
+    await new Promise((r) => setTimeout(r, 600));
+  } catch (e) {
+    console.error(e);
+    setIsSubmitting(false);
+  }
+};
   // залишаємо тільки цифри, але НЕ дозволяємо прибрати 380
   const handlePhoneChange = (raw: string) => {
     const digits = raw.replace(/\D/g, '');
@@ -103,19 +123,24 @@ export function ContactRenderer({
             </span>
           </label>
 
-          {/* SUBMIT */}
           <button
-            onClick={onSubmit}
-            disabled={!isValid}
+            onClick={handleSubmit}
+            disabled={!isValid || isSubmitting}
             className="
               w-full py-5
               bg-black text-white
               rounded-2xl text-lg
               font-semibold
+              flex items-center justify-center gap-3
               disabled:opacity-40
+              transition
             "
           >
-            Отримати результат
+            {isSubmitting && (
+              <span className="w-5 h-5 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+            )}
+
+            {isSubmitting ? '…' : 'Отримати результат'}
           </button>
 
           {/* 🎁 BONUS (ALWAYS OPEN) */}
