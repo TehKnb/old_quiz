@@ -1,5 +1,6 @@
 'use client';
 
+import { ProgressBar } from './components/ProgressBar';
 import { GiftPopover } from './components/GiftPopover';
 
 type Props = {
@@ -17,6 +18,7 @@ type Props = {
 };
 
 export function QuestionChoiceMobile({
+  progress,
   imageUrl,
   question,
   value,
@@ -25,9 +27,10 @@ export function QuestionChoiceMobile({
   onPrev,
 }: Props) {
   return (
-    <div className="min-h-screen bg-white px-4 py-4 flex flex-col text-slate-900 relative">
+    <div className="min-h-screen bg-white px-4 py-4 flex flex-col text-slate-900">
 
-      {/* ===== MAIN CONTENT (НЕ ЧІПАЄМО) ===== */}
+
+      {/* MAIN CONTENT */}
       <div className="flex-1 flex items-center">
         <div className="w-full flex flex-col md:grid md:grid-cols-2 md:gap-10 items-center">
 
@@ -43,16 +46,19 @@ export function QuestionChoiceMobile({
           {/* QUESTION + OPTIONS */}
           <div className="w-full flex flex-col justify-center">
 
-            <h1 className="text-2xl md:text-4xl font-bold text-center mb-6">
+            {/* QUESTION */}
+            <h1 className="text-2xl md:text-4xl font-bold text-center mb-6 text-slate-900">
               {question.text}
             </h1>
 
+            {/* SUBTITLE */}
             {question.subtitle && (
               <p className="text-sm md:text-base text-slate-600 text-center mb-8">
                 {question.subtitle}
               </p>
             )}
 
+            {/* OPTIONS */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
               {question.options.map((opt) => {
                 const active = value === opt;
@@ -63,7 +69,8 @@ export function QuestionChoiceMobile({
                     type="button"
                     onClick={() => onSelect(opt)}
                     className={`
-                      px-4 py-4 rounded-2xl text-left transition font-medium
+                      px-4 py-4 rounded-2xl text-left transition
+                      font-medium
                       ${
                         active
                           ? 'bg-blue-600 text-white'
@@ -76,39 +83,34 @@ export function QuestionChoiceMobile({
                 );
               })}
             </div>
-
           </div>
+
         </div>
       </div>
 
-      {/* ===== STICKY NAV (НЕ ЛАМАЄ ЛЕЙАУТ) ===== */}
-      <div className="sticky bottom-0 bg-white border-t border-slate-200">
-        <div className="max-w-5xl mx-auto flex justify-between items-center px-4 py-4">
-
-          {onPrev ? (
-            <button
-              onClick={onPrev}
-              className="text-slate-600 hover:text-slate-900 transition"
-            >
-              Назад
-            </button>
-          ) : (
-            <div />
-          )}
-
-          <GiftPopover />
-
+      {/* BUTTONS */}
+      <div className="flex justify-between items-center pt-4">
+        {onPrev ? (
           <button
-            onClick={onNext}
-            disabled={!value}
-            className="px-8 py-4 bg-black text-white rounded-2xl disabled:opacity-40 transition"
+            onClick={onPrev}
+            className="text-slate-600 hover:text-slate-900 transition"
           >
-            Далі
+            Назад
           </button>
+        ) : (
+          <div />
+        )}
 
-        </div>
+        <GiftPopover />
+
+        <button
+          onClick={onNext}
+          disabled={!value}
+          className="px-8 py-4 bg-black text-white rounded-2xl disabled:opacity-40 transition"
+        >
+          Далі
+        </button>
       </div>
-
     </div>
   );
 }
