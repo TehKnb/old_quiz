@@ -322,7 +322,7 @@ if (step === 'quiz' && questionIndex === 1) {
     <QuizLayout progress={progress}>
       <QuestionChoiceMobile
         progress={progress}
-        imageUrl="https://i.ibb.co/gbTjSYMm/y-Tr0aw-Rv-FNbbh4nl-Bg-IBSj6-O2r-GXUOtjqhr-EJv0p.png"
+        imageUrl="https://i.ibb.co/FqCjjrZZ/c44ecb5c0f2b20c1.png"
         question={{
           text: currentQuestion!.text,
           subtitle: currentQuestion?.subtitle,
