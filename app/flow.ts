@@ -1,4 +1,3 @@
-// app/flow.ts
 import type { Question } from './data';
 import type { InfoScreenConfig } from './data';
 
@@ -20,18 +19,21 @@ export function buildFlow(
     });
 
     // 2. info-екрани після нього
-    infoScreens
-      .filter((i) => i.afterQuestionId === q.id)
-      .forEach((info) => {
-        flow.push({
-          type: 'info',
-          info,
-        });
+    const infos = infoScreens.filter(
+      (i) => i.afterQuestionId === q.id
+    );
+
+    infos.forEach((info) => {
+      flow.push({
+        type: 'info',
+        info,
       });
+    });
   });
 
   return flow;
 }
+
 
 
 // Для прогресу по питаннях (а не по інфо)

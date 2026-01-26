@@ -3,7 +3,7 @@
 import { GiftPopover } from './components/GiftPopover';
 
 type Props = {
-  title: string;
+  title?: string;
   text: string;
   imageUrl?: string;
   onNext: () => void;
@@ -46,9 +46,11 @@ export function InfoScreenCentered({
 
         {/* TEXT */}
         <div className={`${hasImage ? 'text-center md:text-left' : 'text-center'}`}>
+          {title && (
           <h1 className="text-3xl md:text-4xl font-bold mb-4">
             {title}
           </h1>
+          )}
 
           <p className="text-slate-700 mb-10 leading-relaxed max-w-xl mx-auto md:mx-0">
             {text}

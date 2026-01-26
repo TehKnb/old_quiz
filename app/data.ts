@@ -1364,8 +1364,8 @@ export const videoDatabase = [
 export type InfoScreenConfig = {
   id: string;
   afterQuestionId: string;
-  title: string;
-  text: string;
+  title?: string;
+  text: any;
   imageUrl?: string;
   buttonText?: string;
 
@@ -1386,7 +1386,23 @@ export const infoScreens = [
     id: 'info-2',
     afterQuestionId: questions[1].id, // 🔥 після 2-го питання
     title: 'Ми подбали про вас!',
-    text: 'Програма <b> «Стратегія керованого зростання в бізнесі»</b> створена так, щоб допомогти підприємцям:',
+    text: 'Програма «Стратегія керованого зростання в бізнесі» створена так, щоб допомогти підприємцям:',
     imageUrl: 'https://i.ibb.co/7xd2N2sf/image.jpg',
   },
+
+  {
+  id: 'info-3',
+  afterQuestionId: questions[2].id,
+
+  imageUrl: 'https://i.ibb.co/XXXXXXX/image.jpg',
+
+  text: [
+    {
+      type: 'quote',
+      content:
+        'Я довго блукав у хаосі завдань та невпевненості, але програма змінила все...',
+      author: 'Андрій, підприємець',
+    },
+  ],
+}
 ];
