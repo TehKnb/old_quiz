@@ -353,6 +353,7 @@ if (step === 'quiz' && currentStep?.type === 'info') {
     <InfoScreenCentered
       title={currentStep.info.title}
       text={currentStep.info.text}
+      imageUrl={currentStep.info.imageUrl}
       onNext={handleNext}
     />
   );
