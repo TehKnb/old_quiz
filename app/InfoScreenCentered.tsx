@@ -86,41 +86,40 @@ export function InfoScreenCentered({
 
 
           {/* NAV BAR */}
-          <div className="w-full max-w-xl mx-auto md:mx-0">
-            <div className="flex items-center justify-between gap-4">
+            <div className="w-full max-w-xl mx-auto md:mx-0">
+                <div className="grid grid-cols-3 items-center">
 
-              {/* BACK */}
-              <div className="flex-1">
-                {onPrev && (
-                  <button
-                    onClick={onPrev}
-                    className="w-full text-left text-slate-600 hover:text-slate-900 transition"
-                  >
-                    Назад
-                  </button>
-                )}
-              </div>
+                    {/* BACK */}
+                    <div className="justify-self-start">
+                    {onPrev && (
+                        <button
+                        onClick={onPrev}
+                        className="text-slate-600 hover:text-slate-900 transition"
+                        >
+                        Назад
+                        </button>
+                    )}
+                    </div>
 
-              {/* GIFT */}
-              <div className="flex justify-center shrink-0">
-                <GiftPopover />
-              </div>
+                    {/* GIFT */}
+                    <div className="justify-self-center">
+                    <GiftPopover />
+                    </div>
 
-              {/* NEXT */}
-              <div className="flex-1 flex justify-end">
-                <button
-                  onClick={onNext}
-                  className="w-full md:w-auto px-8 py-4 bg-blue-600 text-white rounded-2xl font-medium hover:bg-blue-700 transition"
-                >
-                  Далі
-                </button>
-              </div>
+                    {/* NEXT */}
+                    <div className="justify-self-end">
+                    <button
+                        onClick={onNext}
+                        className="px-8 py-4 bg-blue-600 text-white rounded-2xl font-medium hover:bg-blue-700 transition"
+                    >
+                        Далі
+                    </button>
+                    </div>
 
+                </div>
             </div>
-          </div>
         </div>
-
-      </div>
+        </div>
     </div>
   );
 }
