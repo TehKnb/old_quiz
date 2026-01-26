@@ -17,12 +17,14 @@ export function ResultStaticView() {
         </div>
 
         {/* RIGHT CONTENT */}
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-center md:items-start text-center md:text-left">
 
+          {/* TITLE */}
           <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
             Дякуємо!
           </h1>
 
+          {/* TEXT */}
           <p className="text-slate-700 mb-6 leading-relaxed max-w-xl">
             Наш менеджер звʼяжеться з Вами протягом 30 хвилин.
             А поки що Ви можете ознайомитись з базовою 7-ми тижневою
@@ -30,43 +32,57 @@ export function ResultStaticView() {
           </p>
 
           {/* BONUS CARD */}
-          <div className="flex items-center gap-3 bg-slate-100 rounded-2xl px-5 py-4 mb-6">
-            <span className="text-2xl">🎁</span>
-            <span className="text-sm font-medium text-slate-800">
-              Чіткий план росту та знижка 50% <br /> на навчання
+          <div
+            className="
+              flex items-center gap-4
+              rounded-2xl
+              px-6 py-4
+              mb-8
+              bg-gradient-to-r from-indigo-50 to-blue-50
+              border border-blue-100
+              shadow-sm
+            "
+          >
+            <span className="text-3xl">🎁</span>
+
+            <span className="text-sm md:text-base font-semibold text-slate-900 leading-snug">
+              ЧІТКИЙ ПЛАН РОСТУ ТА ЗНИЖКА 50% <br />
+              <span className="text-slate-700 font-medium">
+                НА НАВЧАННЯ
+              </span>
             </span>
           </div>
 
           {/* SOCIALS */}
-          <div className="flex items-center gap-4 mb-8">
+          <div className="flex items-center justify-center md:justify-start gap-5 mb-8">
             <a
               href="https://www.instagram.com/konsnabis/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-700 hover:text-black transition"
+              className="text-slate-600 hover:text-black transition"
               aria-label="Instagram"
             >
-              <Instagram />
+              <Instagram size={26} />
             </a>
 
             <a
               href="https://www.youtube.com/channel/UCaMoBw9HpdDUQH9ba_EbQ2w"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-700 hover:text-black transition"
+              className="text-slate-600 hover:text-black transition"
               aria-label="YouTube"
             >
-              <Youtube />
+              <Youtube size={26} />
             </a>
 
             <a
               href="https://www.facebook.com/konsnabis"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-slate-700 hover:text-black transition"
+              className="text-slate-600 hover:text-black transition"
               aria-label="Facebook"
             >
-              <Facebook />
+              <Facebook size={26} />
             </a>
           </div>
 
@@ -77,7 +93,7 @@ export function ResultStaticView() {
             rel="noopener noreferrer"
             className="
               inline-flex items-center justify-center
-              px-8 py-4
+              px-10 py-4
               rounded-2xl
               bg-blue-600
               text-white

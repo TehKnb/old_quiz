@@ -249,6 +249,34 @@ const { progress } = getQuestionProgress(
 
     if (!name || !phone) return;
 
+    // ❌ НЕ setStep('loading')
+
+    try {
+      await fetch('/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          answers,
+          contact: { name, phone },
+          utm: utmParams,
+          quizUrl,
+        }),
+      });
+
+      // 🔥 одразу показуємо result
+      setStep('result');
+    } catch {
+      setStep('result');
+    }
+  };
+
+
+  /*const handleSubmitContact = async () => {
+    const name = contactForm.name.trim();
+    const phone = normalizePhone(contactForm.phone);
+
+    if (!name || !phone) return;
+
     setStep('loading');
 
     try {
@@ -283,7 +311,7 @@ const { progress } = getQuestionProgress(
       });
       setStep('result');
     }
-  };
+  }; */
 
   /* ===================== LOADING ===================== */
 
@@ -618,10 +646,10 @@ if (step === 'contact') {
   );
 }
 
-// ----- LOADING -----
+/*// ----- LOADING -----
 if (step === 'loading') {
   return <LoadingRenderer stages={loadingStages} />;
-}
+}*/
 
 // ----- RESULT -----
 if (step === 'result') {
