@@ -12,7 +12,7 @@ import { cardQuestions } from './data';
 import { ContactRenderer } from './ContactRenderer';
 import { ResultRenderer } from './ResultRenderer';
 import { LoadingRenderer } from './LoadingRenderer';
-
+import { QuizLayout  } from './components/QuizLayout';
 
 
 /* ===================== TYPES ===================== */
@@ -319,138 +319,154 @@ const { progress } = getQuestionProgress(
  // ----- QUESTION: CHOICE -----
 if (step === 'quiz' && questionIndex === 1) {
   return (
-    <QuestionChoiceMobile
-      progress={progress}
-      imageUrl="https://i.ibb.co/gbTjSYMm/y-Tr0aw-Rv-FNbbh4nl-Bg-IBSj6-O2r-GXUOtjqhr-EJv0p.png"
-      question={{
-        text: currentQuestion!.text,
-        subtitle: currentQuestion?.subtitle,
-        options: currentQuestion!.options ?? [],
-      }}
-      value={answers[currentQuestion!.id] as string | undefined}
-      onSelect={setSingleAnswer}
-      onNext={handleNext}
-    />
+    <QuizLayout progress={progress}>
+      <QuestionChoiceMobile
+        progress={progress}
+        imageUrl="https://i.ibb.co/gbTjSYMm/y-Tr0aw-Rv-FNbbh4nl-Bg-IBSj6-O2r-GXUOtjqhr-EJv0p.png"
+        question={{
+          text: currentQuestion!.text,
+          subtitle: currentQuestion?.subtitle,
+          options: currentQuestion!.options ?? [],
+        }}
+        value={answers[currentQuestion!.id] as string | undefined}
+        onSelect={setSingleAnswer}
+        onNext={handleNext}
+      />
+    </QuizLayout>
   );
 }
 
 // ----- QUESTION: MULTIPLE -----
 if (step === 'quiz' && questionIndex === 2) {
   return (
-    <QuestionMultipleCentered
-      progress={progress}
-      question={{
-        text: currentQuestion!.text,
-        helperText: 'Відмітьте всі, що підходять',
-        options: currentQuestion!.options ?? [],
-      }}
-      values={(answers[currentQuestion!.id] as string[]) ?? []}
-      onToggle={toggleMultipleAnswer}
-      onNext={handleNext}
-      onPrev={goPrevQuestion}
-    />
+    <QuizLayout progress={progress}>
+      <QuestionMultipleCentered
+        progress={progress}
+        question={{
+          text: currentQuestion!.text,
+          helperText: 'Відмітьте всі, що підходять',
+          options: currentQuestion!.options ?? [],
+        }}
+        values={(answers[currentQuestion!.id] as string[]) ?? []}
+        onToggle={toggleMultipleAnswer}
+        onNext={handleNext}
+        onPrev={goPrevQuestion}
+      />
+    </QuizLayout>
   );
 }
 
 // ----- 3-й ВАРІАНТ: choice без картинки -----
 if (step === 'quiz' && questionIndex === 3) {
   return (
-    <QuestionChoiceCentered
-      progress={progress}
-      question={{
-        text: currentQuestion!.text,
-        options: currentQuestion!.options ?? [],
-      }}
-      value={answers[currentQuestion!.id] as string | undefined}
-      onSelect={setSingleAnswer}
-      onNext={handleNext}
-      onPrev={goPrevQuestion}
-    />
+    <QuizLayout progress={progress}>
+      <QuestionChoiceCentered
+        progress={progress}
+        question={{
+          text: currentQuestion!.text,
+          options: currentQuestion!.options ?? [],
+        }}
+        value={answers[currentQuestion!.id] as string | undefined}
+        onSelect={setSingleAnswer}
+        onNext={handleNext}
+        onPrev={goPrevQuestion}
+      />
+    </QuizLayout>
   );
 }
 
 if (step === 'quiz' && questionIndex === 4) {
   return (
-    <QuestionChoiceMobile
-      progress={progress}
-      imageUrl="https://i.ibb.co/SXMCpJ34/2a35ad61862addba.jpg"
-      question={{
-        text: currentQuestion!.text,
-        subtitle: currentQuestion!.subtitle,
-        options: currentQuestion!.options ?? [],
-      }}
-      value={answers[currentQuestion!.id] as string | undefined}
-      onSelect={setSingleAnswer}
-      onNext={handleNext}
-      onPrev={goPrevQuestion}
-    />
+    <QuizLayout progress={progress}>
+      <QuestionChoiceMobile
+        progress={progress}
+        imageUrl="https://i.ibb.co/SXMCpJ34/2a35ad61862addba.jpg"
+        question={{
+          text: currentQuestion!.text,
+          subtitle: currentQuestion!.subtitle,
+          options: currentQuestion!.options ?? [],
+        }}
+        value={answers[currentQuestion!.id] as string | undefined}
+        onSelect={setSingleAnswer}
+        onNext={handleNext}
+        onPrev={goPrevQuestion}
+      />
+    </QuizLayout>
   );
 }
 
 // ----- 3-й ВАРІАНТ: choice без картинки -----
 if (step === 'quiz' && questionIndex === 5) {
   return (
-    <QuestionChoiceCentered
-      progress={progress}
-      question={{
-        text: currentQuestion!.text,
-        subtitle: currentQuestion?.subtitle, // можна, а можна і ні
-        options: currentQuestion!.options ?? [],
-      }}
-      value={answers[currentQuestion!.id] as string | undefined}
-      onSelect={setSingleAnswer}
-      onNext={handleNext}
-      onPrev={goPrevQuestion}
-    />
+    <QuizLayout progress={progress}>
+      <QuestionChoiceCentered
+        progress={progress}
+        question={{
+          text: currentQuestion!.text,
+          subtitle: currentQuestion?.subtitle, // можна, а можна і ні
+          options: currentQuestion!.options ?? [],
+        }}
+        value={answers[currentQuestion!.id] as string | undefined}
+        onSelect={setSingleAnswer}
+        onNext={handleNext}
+        onPrev={goPrevQuestion}
+      />
+    </QuizLayout>
   );
 }
 
 if (step === 'quiz' && questionIndex === 6) {
   return (
-    <QuestionChoiceCentered
-      progress={progress}
-      question={{
-        text: currentQuestion!.text,
-        options: currentQuestion!.options ?? [],
-      }}
-      value={answers[currentQuestion!.id] as string | undefined}
-      onSelect={setSingleAnswer}
-      onNext={handleNext}
-      onPrev={goPrevQuestion}
-    />
+    <QuizLayout progress={progress}>
+      <QuestionChoiceCentered
+        progress={progress}
+        question={{
+          text: currentQuestion!.text,
+          options: currentQuestion!.options ?? [],
+        }}
+        value={answers[currentQuestion!.id] as string | undefined}
+        onSelect={setSingleAnswer}
+        onNext={handleNext}
+        onPrev={goPrevQuestion}
+      />
+    </QuizLayout>
   );
 }
 
 if (step === 'quiz' && questionIndex === 7) {
   return (
-    <QuestionTextCentered
-      progress={progress}
-      question={{
-        text: currentQuestion!.text,
-        subtitle: currentQuestion?.subtitle,
-        placeholder: currentQuestion?.placeholder,
-      }}
-      value={answers[currentQuestion!.id] as string | undefined}
-      onChange={setTextAnswer}
-      onNext={handleNext}
-      onPrev={goPrevQuestion}
-    />
+    <QuizLayout progress={progress}>
+      <QuestionTextCentered
+        progress={progress}
+        question={{
+          text: currentQuestion!.text,
+          subtitle: currentQuestion?.subtitle,
+          placeholder: currentQuestion?.placeholder,
+        }}
+        value={answers[currentQuestion!.id] as string | undefined}
+        onChange={setTextAnswer}
+        onNext={handleNext}
+        onPrev={goPrevQuestion}
+      />
+    </QuizLayout>
   );
 }
 
 if (step === 'quiz' && questionIndex === 8) {
   return (
-    <QuestionChoiceCentered
-      progress={progress}
-      question={{
-        text: currentQuestion!.text,
-        options: currentQuestion!.options ?? [],
-      }}
-      value={answers[currentQuestion!.id] as string | undefined}
-      onSelect={setSingleAnswer}
-      onNext={handleNext}
-      onPrev={goPrevQuestion}
-    />
+    <QuizLayout progress={progress}>
+      <QuestionChoiceCentered
+        progress={progress}
+        question={{
+          text: currentQuestion!.text,
+          options: currentQuestion!.options ?? [],
+        }}
+        value={answers[currentQuestion!.id] as string | undefined}
+        onSelect={setSingleAnswer}
+        onNext={handleNext}
+        onPrev={goPrevQuestion}
+      />
+    </QuizLayout>
   );
 }
 
@@ -461,16 +477,18 @@ if (step === 'quiz' && questionIndex === 9) {
   const q = cardQuestions[0];
 
   return (
-    <QuestionChoiceCards
-      progress={progress}
-      question={q}
-      value={answers[q.id] as string | undefined}
-      onSelect={(v) => {
-        setSingleAnswer(v);
-        setTimeout(handleNext, 300);
-      }}
-      onPrev={goPrevQuestion}
-    />
+    <QuizLayout progress={progress}>
+      <QuestionChoiceCards
+        progress={progress}
+        question={q}
+        value={answers[q.id] as string | undefined}
+        onSelect={(v) => {
+          setSingleAnswer(v);
+          setTimeout(handleNext, 300);
+        }}
+        onPrev={goPrevQuestion}
+      />
+    </QuizLayout>
   );
 }
 
@@ -478,97 +496,109 @@ if (step === 'quiz' && questionIndex === 10) {
   const q = cardQuestions[1];
 
   return (
-    <QuestionChoiceCards
-      progress={progress}
-      question={q}
-      value={answers[q.id] as string | undefined}
-      onSelect={(v) => {
-        setSingleAnswer(v);
-        setTimeout(handleNext, 300);
-      }}
-      onPrev={goPrevQuestion}
-    />
+    <QuizLayout progress={progress}>
+      <QuestionChoiceCards
+        progress={progress}
+        question={q}
+        value={answers[q.id] as string | undefined}
+        onSelect={(v) => {
+          setSingleAnswer(v);
+          setTimeout(handleNext, 300);
+        }}
+        onPrev={goPrevQuestion}
+      />
+    </QuizLayout>
   );
 }
 
 if (step === 'quiz' && questionIndex === 11) {
   return (
-    <QuestionChoiceCentered
-      progress={progress}
-      question={{
-        text: currentQuestion!.text,
-        options: currentQuestion!.options ?? [],
-      }}
-      value={answers[currentQuestion!.id] as string | undefined}
-      onSelect={setSingleAnswer}
-      onNext={handleNext}
-      onPrev={goPrevQuestion}
-    />
+    <QuizLayout progress={progress}>
+      <QuestionChoiceCentered
+        progress={progress}
+        question={{
+          text: currentQuestion!.text,
+          options: currentQuestion!.options ?? [],
+        }}
+        value={answers[currentQuestion!.id] as string | undefined}
+        onSelect={setSingleAnswer}
+        onNext={handleNext}
+        onPrev={goPrevQuestion}
+      />
+    </QuizLayout>
   );
 }
 
 if (step === 'quiz' && questionIndex === 12) {
   return (
-    <QuestionChoiceCentered
-      progress={progress}
-      question={{
-        text: currentQuestion!.text,
-        options: currentQuestion!.options ?? [],
-      }}
-      value={answers[currentQuestion!.id] as string | undefined}
-      onSelect={setSingleAnswer}
-      onNext={handleNext}
-      onPrev={goPrevQuestion}
-    />
+    <QuizLayout progress={progress}>
+      <QuestionChoiceCentered
+        progress={progress}
+        question={{
+          text: currentQuestion!.text,
+          options: currentQuestion!.options ?? [],
+        }}
+        value={answers[currentQuestion!.id] as string | undefined}
+        onSelect={setSingleAnswer}
+        onNext={handleNext}
+        onPrev={goPrevQuestion}
+      />
+    </QuizLayout>
   );
 }
 
 if (step === 'quiz' && questionIndex === 13) {
   return (
-    <QuestionMultipleCentered
-      progress={progress}
-      question={{
-        text: currentQuestion!.text,
-        helperText: '(оберіть ті, що стосуються вас):',
-        options: currentQuestion!.options ?? [],
-      }}
-      values={(answers[currentQuestion!.id] as string[]) ?? []}
-      onToggle={toggleMultipleAnswer}
-      onNext={handleNext}
-      onPrev={goPrevQuestion}
-    />
+    <QuizLayout progress={progress}>
+      <QuestionMultipleCentered
+        progress={progress}
+        question={{
+          text: currentQuestion!.text,
+          helperText: '(оберіть ті, що стосуються вас):',
+          options: currentQuestion!.options ?? [],
+        }}
+        values={(answers[currentQuestion!.id] as string[]) ?? []}
+        onToggle={toggleMultipleAnswer}
+        onNext={handleNext}
+        onPrev={goPrevQuestion}
+      />
+    </QuizLayout>
   );
 }
 
 if (step === 'quiz' && questionIndex === 14) {
   return (
-    <QuestionChoiceCentered
-      progress={progress}
-      question={{
-        text: currentQuestion!.text,
-        options: currentQuestion!.options ?? [],
-      }}
-      value={answers[currentQuestion!.id] as string | undefined}
-      onSelect={setSingleAnswer}
-      onNext={handleNext}
-      onPrev={goPrevQuestion}
-    />
+    <QuizLayout progress={progress}>
+      <QuestionChoiceCentered
+        progress={progress}
+        question={{
+          text: currentQuestion!.text,
+          options: currentQuestion!.options ?? [],
+        }}
+        value={answers[currentQuestion!.id] as string | undefined}
+        onSelect={setSingleAnswer}
+        onNext={handleNext}
+        onPrev={goPrevQuestion}
+      />
+    </QuizLayout>
   );
 }
 
 if (step === 'quiz' && questionIndex === 15) {
   return (
-    <QuestionChoiceCentered
-      progress={progress}
-      question={{
-        text: currentQuestion!.text,
-        options: currentQuestion!.options ?? [],
-      }}
-      value={answers[currentQuestion!.id] as string | undefined}
-      onSelect={setSingleAnswer}
-      onNext={handleNext}
-      onPrev={goPrevQuestion}
-    />
+    <QuizLayout progress={progress}>
+      <QuestionChoiceCentered
+        progress={progress}
+        question={{
+          text: currentQuestion!.text,
+          options: currentQuestion!.options ?? [],
+        }}
+        value={answers[currentQuestion!.id] as string | undefined}
+        onSelect={setSingleAnswer}
+        onNext={handleNext}
+        onPrev={goPrevQuestion}
+      />
+    </QuizLayout>
   );
 }
 

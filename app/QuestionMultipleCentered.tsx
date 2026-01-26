@@ -26,8 +26,6 @@ export function QuestionMultipleCentered({
   return (
     <div className="min-h-screen bg-white px-4 py-4 flex flex-col text-slate-900">
 
-      {/* PROGRESS */}
-      <ProgressBar value={progress} />
 
       {/* CONTENT */}
       <div className="flex-1 flex items-center justify-center">
