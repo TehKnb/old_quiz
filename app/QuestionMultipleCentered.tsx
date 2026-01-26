@@ -29,7 +29,7 @@ export function QuestionMultipleCentered({
 
 
       {/* CONTENT */}
-      <div className="flex-1 flex items-center justify-center">
+      <div className="flex-1 flex items-start md:items-center pt-4 md:pt-0">
         <div className="w-full max-w-4xl">
 
           {/* QUESTION */}

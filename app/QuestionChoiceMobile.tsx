@@ -30,7 +30,7 @@ export function QuestionChoiceMobile({
     <div className="min-h-screen bg-white px-4 py-4 flex flex-col text-slate-900">
       
       {/* MAIN CONTENT */}
-      <div className="flex-1 flex items-center">
+      <div className="flex-1 flex items-start md:items-center pt-4 md:pt-0">
         <div className="w-full flex flex-col md:grid md:grid-cols-2 md:gap-10 items-center">
 
           {/* IMAGE */}
