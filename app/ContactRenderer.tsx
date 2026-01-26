@@ -17,13 +17,11 @@ export function ContactRenderer({
   const handlePhoneChange = (raw: string) => {
     const digits = raw.replace(/\D/g, '');
 
-    // завжди починаємо з 380
     if (!digits.startsWith('380')) {
       onChange('phone', '380');
       return;
     }
 
-    // максимум 12 цифр: 380 + 9
     if (digits.length > 12) return;
 
     onChange('phone', digits);
@@ -39,7 +37,7 @@ export function ContactRenderer({
       <div className="w-full max-w-xl">
 
         {/* TITLE */}
-        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900">
+        <h2 className="text-3xl md:text-4xl font-bold mb-6">
           Ми вже аналізуємо ваші відповіді.
         </h2>
 
@@ -70,14 +68,11 @@ export function ContactRenderer({
 
           {/* PHONE */}
           <div className="flex gap-3">
-
-            {/* COUNTRY CODE */}
-            <div className="flex items-center gap-2 px-4 py-4 bg-slate-100 rounded-xl text-slate-900">
+            <div className="flex items-center gap-2 px-4 py-4 bg-slate-100 rounded-xl">
               <span className="text-xl">🇺🇦</span>
               <span className="font-medium">+380</span>
             </div>
 
-            {/* PHONE INPUT */}
             <input
               value={phone.slice(3)}
               onChange={(e) =>
@@ -116,11 +111,32 @@ export function ContactRenderer({
               w-full py-5
               bg-black text-white
               rounded-2xl text-lg
+              font-semibold
               disabled:opacity-40
             "
           >
             Отримати результат
           </button>
+
+          {/* 🎁 BONUS (ALWAYS OPEN) */}
+          <div
+            className="
+              w-full
+              flex items-center gap-3
+              px-5 py-4
+              rounded-2xl
+              bg-gradient-to-r from-indigo-50 to-blue-50
+              border border-blue-100
+            "
+          >
+            <span className="text-2xl shrink-0">🎁</span>
+
+            <span className="text-sm font-medium text-slate-800 leading-snug">
+              ЧІТКИЙ ПЛАН РОСТУ<br />
+              та знижка <span className="font-semibold">50%</span> на навчання
+            </span>
+          </div>
+
         </div>
       </div>
     </div>
