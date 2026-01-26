@@ -90,7 +90,7 @@ export function QuestionChoiceMobile({
 
       {/* BUTTONS */}
       <div className="flex justify-between items-center pt-2">
-        {/* ⬆️ було pt-4 → стало pt-2 */}
+        {/* ⬆️ було pt-4 → стало  pt-3   */}
 
         {onPrev ? (
           <button
@@ -110,6 +110,7 @@ export function QuestionChoiceMobile({
           disabled={!value}
           className="px-8 py-4 bg-black text-white rounded-2xl disabled:opacity-40 transition"
         >
+
           Далі
         </button>
       </div>
