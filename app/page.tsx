@@ -14,6 +14,8 @@ import { ResultRenderer } from './ResultRenderer';
 import { LoadingRenderer } from './LoadingRenderer';
 import { QuizLayout  } from './components/QuizLayout';
 import { ResultStaticView } from './ResultStaticView';
+import { InfoScreenCentered } from './InfoScreenCentered';
+
 
 
 
@@ -363,6 +365,16 @@ if (step === 'quiz' && questionIndex === 1) {
         onNext={handleNext}
       />
     </QuizLayout>
+  );
+}
+
+if (step === 'quiz' && currentStep?.type === 'info') {
+  return (
+    <InfoScreenCentered
+      title={currentStep.info.title}
+      text={currentStep.info.text}
+      onNext={handleNext}
+    />
   );
 }
 

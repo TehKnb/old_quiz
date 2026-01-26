@@ -6,22 +6,33 @@ export type FlowStep =
   | { type: 'question'; question: Question }
   | { type: 'info'; info: InfoScreenConfig };
 
-export function buildFlow(questions: Question[], infoScreens: InfoScreenConfig[]): FlowStep[] {
-  const map = new Map(infoScreens.map((s) => [s.afterQuestionId, s]));
-
+export function buildFlow(
+  questions: Question[],
+  infoScreens: InfoScreenConfig[]
+): FlowStep[] {
   const flow: FlowStep[] = [];
 
-  for (const q of questions) {
-    flow.push({ type: 'question', question: q });
+  questions.forEach((q) => {
+    // 1. питання
+    flow.push({
+      type: 'question',
+      question: q,
+    });
 
-    const info = map.get(q.id);
-    if (info) {
-      flow.push({ type: 'info', info });
-    }
-  }
+    // 2. info-екрани після нього
+    infoScreens
+      .filter((i) => i.afterQuestionId === q.id)
+      .forEach((info) => {
+        flow.push({
+          type: 'info',
+          info,
+        });
+      });
+  });
 
   return flow;
 }
+
 
 // Для прогресу по питаннях (а не по інфо)
 export function getQuestionProgress(flow: FlowStep[], stepIndex: number, totalQuestions: number) {
