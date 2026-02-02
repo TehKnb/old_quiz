@@ -17,22 +17,16 @@ export function ContactRenderer({
 }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async () => {
-  if (isSubmitting) return; // ⛔ анти-спам кліків
+  const handleSubmit = () => {
+    if (isSubmitting) return; // ⛔ анти-спам кліків
+    setIsSubmitting(true);
 
-  setIsSubmitting(true);
+    // 🚀 МИТТЄВИЙ ПЕРЕХІД
+    onSubmit();
 
-  try {
-    // якщо onSubmit синхронний — це ОК
-    await Promise.resolve(onSubmit());
+    // ⛔ НЕ чекаємо, НЕ блокуємо UI
+  };
 
-    // якщо хочеш micro-loading (рекомендую)
-    await new Promise((r) => setTimeout(r, 600));
-  } catch (e) {
-    console.error(e);
-    setIsSubmitting(false);
-  }
-};
   // залишаємо тільки цифри, але НЕ дозволяємо прибрати 380
   const handlePhoneChange = (raw: string) => {
     const digits = raw.replace(/\D/g, '');
@@ -143,7 +137,7 @@ export function ContactRenderer({
             {isSubmitting ? '…' : 'Отримати результат'}
           </button>
 
-          {/* 🎁 BONUS (ALWAYS OPEN) */}
+          {/* 🎁 BONUS */}
           <div
             className="
               w-full
