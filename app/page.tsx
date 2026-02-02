@@ -245,32 +245,31 @@ const { progress } = getQuestionProgress(
     return null;
   };
 
-  const handleSubmitContact = async () => {
-    const name = contactForm.name.trim();
-    const phone = normalizePhone(contactForm.phone);
+  const handleSubmitContact = () => {
+  const name = contactForm.name.trim();
+  const phone = normalizePhone(contactForm.phone);
 
-    if (!name || !phone) return;
+  if (!name || !phone) return;
 
-    // ❌ НЕ setStep('loading')
+  // 🚀 1. ПЕРЕХІД МИТТЄВО
+  setStep('result');
 
-    try {
-      await fetch('/api/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          answers,
-          contact: { name, phone },
-          utm: utmParams,
-          quizUrl,
-        }),
-      });
+  // 🐢 2. CRM — У ФОНІ, БЕЗ await
+  fetch('/api/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      answers,
+      contact: { name, phone },
+      utm: utmParams,
+      quizUrl,
+    }),
+  }).catch(() => {
+    // можна логувати, але UI не чіпаємо
+    console.error('CRM submit failed');
+  });
+};
 
-      // 🔥 одразу показуємо result
-      setStep('result');
-    } catch {
-      setStep('result');
-    }
-  };
 
 
   /*const handleSubmitContact = async () => {

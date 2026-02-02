@@ -6,7 +6,7 @@ type Props = {
   name: string;
   phone: string;
   onChange: (field: 'name' | 'phone', value: string) => void;
-  onSubmit: () => Promise<void> | void; // 👈 може бути async
+  onSubmit: () => void;
 };
 
 export function ContactRenderer({
@@ -18,19 +18,16 @@ export function ContactRenderer({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = () => {
-    if (isSubmitting) return;
+    if (isSubmitting) return; // ⛔ анти-спам кліків
     setIsSubmitting(true);
 
-    // 🚀 FIRE & FORGET
-    try {
-      void onSubmit(); // ⛔ не await!
-    } catch (e) {
-      console.error('Submit error:', e);
-    }
+    // 🚀 МИТТЄВИЙ ПЕРЕХІД
+    onSubmit();
 
-    // 👉 UI одразу піде у наступний step
+    // ⛔ НЕ чекаємо, НЕ блокуємо UI
   };
 
+  // залишаємо тільки цифри, але НЕ дозволяємо прибрати 380
   const handlePhoneChange = (raw: string) => {
     const digits = raw.replace(/\D/g, '');
 
@@ -53,25 +50,37 @@ export function ContactRenderer({
     <div className="min-h-screen flex items-center justify-center px-4 bg-white text-slate-900">
       <div className="w-full max-w-xl">
 
+        {/* TITLE */}
         <h2 className="text-3xl md:text-4xl font-bold mb-6">
           Ми вже аналізуємо ваші відповіді.
         </h2>
 
+        {/* DESCRIPTION */}
         <p className="text-slate-700 mb-10 leading-relaxed">
           Для того, щоб отримати більш детальну інформацію про ситуацію
           у вашому бізнесі та про те, як наша навчальна програма може
           допомогти вам примножити чистий прибуток — залиште контактні дані:
         </p>
 
+        {/* FORM */}
         <div className="space-y-6">
 
+          {/* NAME */}
           <input
             value={name}
             onChange={(e) => onChange('name', e.target.value)}
             placeholder="Імʼя*"
-            className="w-full px-4 py-4 rounded-xl bg-slate-100 focus:ring-2 focus:ring-black"
+            className="
+              w-full px-4 py-4 rounded-xl
+              bg-slate-100
+              text-slate-900
+              placeholder:text-slate-500
+              outline-none
+              focus:ring-2 focus:ring-black
+            "
           />
 
+          {/* PHONE */}
           <div className="flex gap-3">
             <div className="flex items-center gap-2 px-4 py-4 bg-slate-100 rounded-xl">
               <span className="text-xl">🇺🇦</span>
@@ -85,10 +94,18 @@ export function ContactRenderer({
               }
               placeholder="XX XXX XXXX*"
               inputMode="numeric"
-              className="flex-1 px-4 py-4 rounded-xl bg-slate-100 focus:ring-2 focus:ring-black"
+              className="
+                flex-1 px-4 py-4 rounded-xl
+                bg-slate-100
+                text-slate-900
+                placeholder:text-slate-500
+                outline-none
+                focus:ring-2 focus:ring-black
+              "
             />
           </div>
 
+          {/* CHECKBOX */}
           <label className="flex items-start gap-3 text-sm text-slate-700">
             <input type="checkbox" defaultChecked className="mt-1" />
             <span>
@@ -103,10 +120,43 @@ export function ContactRenderer({
           <button
             onClick={handleSubmit}
             disabled={!isValid || isSubmitting}
-            className="w-full py-5 bg-black text-white rounded-2xl text-lg font-semibold disabled:opacity-40"
+            className="
+              w-full py-5
+              bg-black text-white
+              rounded-2xl text-lg
+              font-semibold
+              flex items-center justify-center gap-3
+              disabled:opacity-40
+              transition
+            "
           >
+            {isSubmitting && (
+              <span className="w-5 h-5 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+            )}
+
             {isSubmitting ? '…' : 'Отримати результат'}
           </button>
+
+          {/* 🎁 BONUS */}
+          <div
+            className="
+              w-full
+              flex flex-col items-center justify-center
+              text-center
+              gap-2
+              px-5 py-4
+              rounded-2xl
+              bg-gradient-to-r from-indigo-50 to-blue-50
+              border border-blue-100
+            "
+          >
+            <span className="text-2xl">🎁</span>
+
+            <span className="text-sm font-medium text-slate-800 leading-snug">
+              ЧІТКИЙ ПЛАН РОСТУ<br />
+              та знижка <span className="font-semibold">50%</span> на навчання
+            </span>
+          </div>
 
         </div>
       </div>
