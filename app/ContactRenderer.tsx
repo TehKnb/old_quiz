@@ -36,7 +36,7 @@ export function ContactRenderer({
       return;
     }
 
-    if (digits.length > 12) return;
+    if (digits.length > 15) return;
 
     onChange('phone', digits);
   };
