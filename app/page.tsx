@@ -234,16 +234,26 @@ const { progress } = getQuestionProgress(
 
   /* ===================== CONTACT SUBMIT ===================== */
 
-  const normalizePhone = (raw: string): string | null => {
-    const digits = raw.replace(/\D/g, '');
+const normalizePhone = (raw: string): string | null => {
+  const digits = raw.replace(/\D/g, '');
 
-    if (digits.startsWith('380') && digits.length === 12) return digits;
-    if (digits.length === 10 && digits.startsWith('0'))
-      return '38' + digits.slice(1);
-    if (digits.length === 9) return '380' + digits;
+  // якщо номер уже з 380 → приймаємо від 12 до 15 цифр
+  if (digits.startsWith('380') && digits.length >= 12 && digits.length <= 15) {
+    return digits;
+  }
 
-    return null;
-  };
+  // формат 0XXXXXXXXX
+  if (digits.length === 10 && digits.startsWith('0')) {
+    return '38' + digits.slice(1);
+  }
+
+  // без коду країни
+  if (digits.length >= 9 && digits.length <= 12) {
+    return '380' + digits;
+  }
+
+  return null;
+};
 
   const handleSubmitContact = () => {
   const name = contactForm.name.trim();

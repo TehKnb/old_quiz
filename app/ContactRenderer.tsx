@@ -16,19 +16,24 @@ export function ContactRenderer({
   onSubmit,
 }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [phoneError, setPhoneError] = useState<string | null>(null);
 
   const handleSubmit = () => {
-    if (isSubmitting) return; // ⛔ анти-спам кліків
+    if (isSubmitting) return;
+
+    if (!isValid) {
+      setPhoneError('Будь ласка, введіть коректний номер телефону');
+      return;
+    }
+
     setIsSubmitting(true);
-
-    // 🚀 МИТТЄВИЙ ПЕРЕХІД
     onSubmit();
-
-    // ⛔ НЕ чекаємо, НЕ блокуємо UI
   };
 
-  // залишаємо тільки цифри, але НЕ дозволяємо прибрати 380
+  // тільки цифри, фіксований +380, максимум 15
   const handlePhoneChange = (raw: string) => {
+    setPhoneError(null);
+
     const digits = raw.replace(/\D/g, '');
 
     if (!digits.startsWith('380')) {
@@ -44,7 +49,8 @@ export function ContactRenderer({
   const isValid =
     name.trim().length > 1 &&
     phone.startsWith('380') &&
-    phone.length >= 12;
+    phone.length >= 12 &&
+    phone.length <= 15;
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 bg-white text-slate-900">
@@ -56,11 +62,18 @@ export function ContactRenderer({
         </h2>
 
         {/* DESCRIPTION */}
-        <p className="text-slate-700 mb-10 leading-relaxed">
+        <p className="text-slate-700 mb-6 leading-relaxed">
           Для того, щоб отримати більш детальну інформацію про ситуацію
           у вашому бізнесі та про те, як наша навчальна програма може
           допомогти вам примножити чистий прибуток — залиште контактні дані:
         </p>
+
+        {/* ERROR */}
+        {phoneError && (
+          <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm">
+            {phoneError}
+          </div>
+        )}
 
         {/* FORM */}
         <div className="space-y-6">
@@ -117,9 +130,10 @@ export function ContactRenderer({
             </span>
           </label>
 
+          {/* BUTTON */}
           <button
             onClick={handleSubmit}
-            disabled={!isValid || isSubmitting}
+            disabled={isSubmitting}
             className="
               w-full py-5
               bg-black text-white
@@ -137,7 +151,7 @@ export function ContactRenderer({
             {isSubmitting ? '…' : 'Отримати результат'}
           </button>
 
-          {/* 🎁 BONUS */}
+          {/* BONUS */}
           <div
             className="
               w-full
