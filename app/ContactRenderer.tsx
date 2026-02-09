@@ -44,7 +44,7 @@ export function ContactRenderer({
   const isValid =
     name.trim().length > 1 &&
     phone.startsWith('380') &&
-    phone.length === 12;
+    phone.length >= 12;
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 bg-white text-slate-900">
