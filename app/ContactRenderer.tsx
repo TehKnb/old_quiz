@@ -16,13 +16,14 @@ export function ContactRenderer({
   onSubmit,
 }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [phoneError, setPhoneError] = useState<string | null>(null);
 
   const handleSubmit = () => {
     if (isSubmitting) return;
 
-    if (!isValid) {
-      setPhoneError('Будь ласка, введіть коректний номер телефону');
+    const digits = phone.replace(/\D/g, '');
+
+    if (!digits.startsWith('380') || digits.length !== 12) {
+      alert('"380" вже введені, будь ласка, введіть коректний номер телефону');
       return;
     }
 
@@ -30,10 +31,8 @@ export function ContactRenderer({
     onSubmit();
   };
 
-  // тільки цифри, фіксований +380, максимум 15
+  // тільки цифри, фіксований +380, максимум 15 для UX
   const handlePhoneChange = (raw: string) => {
-    setPhoneError(null);
-
     const digits = raw.replace(/\D/g, '');
 
     if (!digits.startsWith('380')) {
@@ -46,12 +45,6 @@ export function ContactRenderer({
     onChange('phone', digits);
   };
 
-  const isValid =
-    name.trim().length > 1 &&
-    phone.startsWith('380') &&
-    phone.length >= 12 &&
-    phone.length <= 15;
-
   return (
     <div className="min-h-screen flex items-center justify-center px-4 bg-white text-slate-900">
       <div className="w-full max-w-xl">
@@ -62,18 +55,11 @@ export function ContactRenderer({
         </h2>
 
         {/* DESCRIPTION */}
-        <p className="text-slate-700 mb-6 leading-relaxed">
+        <p className="text-slate-700 mb-10 leading-relaxed">
           Для того, щоб отримати більш детальну інформацію про ситуацію
           у вашому бізнесі та про те, як наша навчальна програма може
           допомогти вам примножити чистий прибуток — залиште контактні дані:
         </p>
-
-        {/* ERROR */}
-        {phoneError && (
-          <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm">
-            {phoneError}
-          </div>
-        )}
 
         {/* FORM */}
         <div className="space-y-6">
