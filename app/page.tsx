@@ -70,6 +70,7 @@ export default function Home() {
 
   const [contactForm, setContactForm] = useState({
     name: '',
+    city: '',
     phone: '',
   });
 
@@ -257,6 +258,7 @@ const normalizePhone = (raw: string): string | null => {
 
   const handleSubmitContact = () => {
   const name = contactForm.name.trim();
+  const city = contactForm.city.trim();
   const phone = normalizePhone(contactForm.phone);
 
   if (!name || !phone) return;
@@ -270,7 +272,7 @@ const normalizePhone = (raw: string): string | null => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       answers,
-      contact: { name, phone },
+      contact: { name, city, phone },
       utm: utmParams,
       quizUrl,
     }),
@@ -660,6 +662,7 @@ if (step === 'contact') {
   return (
     <ContactRenderer
       name={contactForm.name}
+      city={contactForm.city} // ✅ додали
       phone={contactForm.phone}
       onChange={(field, value) =>
         setContactForm((p) => ({ ...p, [field]: value }))

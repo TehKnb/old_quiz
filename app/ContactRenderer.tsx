@@ -4,13 +4,15 @@ import { useState } from 'react';
 
 type Props = {
   name: string;
+  city: string; // ✅ додали
   phone: string;
-  onChange: (field: 'name' | 'phone', value: string) => void;
+  onChange: (field: 'name' | 'city' | 'phone', value: string) => void; // ✅ розширили
   onSubmit: () => void;
 };
 
 export function ContactRenderer({
   name,
+  city, // ✅ додали
   phone,
   onChange,
   onSubmit,
@@ -69,6 +71,21 @@ export function ContactRenderer({
             value={name}
             onChange={(e) => onChange('name', e.target.value)}
             placeholder="Імʼя*"
+            className="
+              w-full px-4 py-4 rounded-xl
+              bg-slate-100
+              text-slate-900
+              placeholder:text-slate-500
+              outline-none
+              focus:ring-2 focus:ring-black
+            "
+          />
+
+          {/* CITY (optional) ✅ */}
+          <input
+            value={city}
+            onChange={(e) => onChange('city', e.target.value)}
+            placeholder="Місто (необов'язково)"
             className="
               w-full px-4 py-4 rounded-xl
               bg-slate-100
