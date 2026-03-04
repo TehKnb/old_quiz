@@ -100,7 +100,7 @@ const normalizePhoneServer = (raw: string): string => {
 
 // --- Відправка у CRM через Webhook ---
 async function sendToCRM(params: {
-  contact: { name: string; phone: string };
+  contact: { name: string; phone: string; city?: string };
   answers: Record<string, any>;
   sellingText: string;
   usedOpenAI: boolean;
@@ -158,6 +158,8 @@ async function sendToCRM(params: {
     // 🔹 Імʼя клієнта окремим полем
     'client-name': contact.name,
 
+    city: contact.city?.trim() || '',
+    
     // 🔹 Телефон у нормалізованому форматі
     phone: normalizePhoneServer(contact.phone),
 
@@ -210,7 +212,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { answers, contact, utm, quizUrl } = body as {
       answers: Record<string, any>;
-      contact: { name: string; phone: string };
+      contact: { name: string; phone: string; city?: string };
       utm?: {
         utm_source?: string;
         utm_medium?: string;
