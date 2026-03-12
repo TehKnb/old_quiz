@@ -3,6 +3,7 @@
 import { GiftPopover } from './components/GiftPopover';
 
 type Props = {
+  progress: number;
   imageUrl: string;
   question: {
     text: string;
@@ -16,6 +17,7 @@ type Props = {
 };
 
 export function QuestionChoiceMobile({
+  progress,
   imageUrl,
   question,
   value,
@@ -24,12 +26,12 @@ export function QuestionChoiceMobile({
   onPrev,
 }: Props) {
   return (
-    <div className="h-full bg-white px-5 md:px-5 py-2 md:py-1 flex flex-col text-slate-900">
+    <div className="h-full bg-white px-4 py-2 md:py-1 flex flex-col text-slate-900">
       <div className="flex-1 min-h-0 flex items-center md:pt-[30px] md:pb-[30px]">
-        {/* OUTER WIDTH CONTAINER */}
-        <div className="w-full max-w-[1640px] mx-auto h-full min-h-0 flex flex-col justify-between">
+        {/* ONE COMMON CONTAINER */}
+        <div className="w-full h-full min-h-0 flex flex-col justify-between">
           {/* TOP CONTENT */}
-          <div className="w-full min-h-0 flex flex-col md:grid md:grid-cols-2 md:gap-10 items-center">
+          <div className="w-full min-h-0 flex flex-col md:grid md:grid-cols-2 md:gap-6 items-center">
             {/* IMAGE */}
             <div className="w-full flex justify-center items-center mb-3 md:mb-0 min-h-0">
               <img
@@ -78,33 +80,27 @@ export function QuestionChoiceMobile({
           </div>
 
           {/* BUTTONS */}
-          <div className="w-full flex justify-between items-center pt-4 md:pt-6 shrink-0">
-            <div className="flex items-center justify-start">
-              {onPrev ? (
-                <button
-                  onClick={onPrev}
-                  className="text-slate-600 hover:text-slate-900 transition"
-                >
-                  Назад
-                </button>
-              ) : (
-                <div />
-              )}
-            </div>
-
-            <div className="flex items-center justify-center">
-              <GiftPopover />
-            </div>
-
-            <div className="flex items-center justify-end">
+          <div className="flex justify-between items-center pt-4 md:pt-6 shrink-0">
+            {onPrev ? (
               <button
-                onClick={onNext}
-                disabled={!value}
-                className="px-8 py-4 md:py-3 bg-black text-white rounded-2xl disabled:opacity-40 transition"
+                onClick={onPrev}
+                className="text-slate-600 hover:text-slate-900 transition"
               >
-                Далі
+                Назад
               </button>
-            </div>
+            ) : (
+              <div />
+            )}
+
+            <GiftPopover />
+
+            <button
+              onClick={onNext}
+              disabled={!value}
+              className="px-8 py-4 md:py-3 bg-black text-white rounded-2xl disabled:opacity-40 transition"
+            >
+              Далі
+            </button>
           </div>
         </div>
       </div>
