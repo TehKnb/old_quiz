@@ -28,7 +28,7 @@ export function QuestionChoiceMobile({
   return (
     <div className="h-full bg-white px-4 py-2 md:py-1 flex flex-col text-slate-900">
       {/* MAIN CONTENT */}
-      <div className="flex-1 min-h-0 flex items-center">
+      <div className="flex-1 min-h-0 flex items-center md:pt-[30px] md:pb-[30px]">
         <div className="w-full flex flex-col md:grid md:grid-cols-2 md:gap-6 items-center min-h-0">
           
           {/* IMAGE */}
