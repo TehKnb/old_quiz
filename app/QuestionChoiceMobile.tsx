@@ -27,7 +27,7 @@ export function QuestionChoiceMobile({
   onPrev,
 }: Props) {
   return (
-    <div className="min-h-screen bg-white px-4 py-2 md:py-16 flex flex-col text-slate-900">
+    <div className="min-h-screen bg-white px-4 py-4 md:py-16 flex flex-col text-slate-900">
       {/* MAIN CONTENT */}
       <div
         className="
