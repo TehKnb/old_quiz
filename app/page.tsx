@@ -263,10 +263,24 @@ const normalizePhone = (raw: string): string | null => {
 
   if (!name || !phone) return;
 
-  // 🚀 1. ПЕРЕХІД МИТТЄВО
+  const w = window as any;
+
+  // Meta Lead
+  if (w.fbq && !leadSentRef.current) {
+    w.fbq('track', 'Lead');
+  }
+
+  // TikTok SubmitForm
+  if (w.ttq && !leadSentRef.current) {
+    w.ttq.track('SubmitForm');
+  }
+
+  leadSentRef.current = true;
+
+  // одразу показуємо результат
   setStep('result');
 
-  // 🐢 2. CRM — У ФОНІ, БЕЗ await
+  // CRM у фоні
   fetch('/api/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -277,7 +291,6 @@ const normalizePhone = (raw: string): string | null => {
       quizUrl,
     }),
   }).catch(() => {
-    // можна логувати, але UI не чіпаємо
     console.error('CRM submit failed');
   });
 };
