@@ -85,7 +85,10 @@ export default function Home() {
   const leadSentRef = useRef(false);
 
   /* ---------- FLOW ---------- */
-  const flow = buildFlow(questions, infoScreens);
+  const hiddenQuestionIds = ['traffic_channel', 'analytics_skills', 'site_understanding'];
+const visibleQuestions = questions.filter(q => !hiddenQuestionIds.includes(q.id));
+const flow = buildFlow(visibleQuestions, []);
+  /*const flow = buildFlow(questions, infoScreens);*/
   const currentStep = flow[currentStepIndex];
 
   const currentQuestion: Question | null =
