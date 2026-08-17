@@ -1,4 +1,3 @@
-'use client';
 import { Instagram, Youtube, Facebook } from 'lucide-react';
 
 function TelegramIcon({ size = 20, className = '' }) {
