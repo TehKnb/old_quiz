@@ -1,6 +1,11 @@
 import { Instagram, Youtube, Facebook } from 'lucide-react';
 
-function TelegramIcon({ size = 20, className = '' }) {
+type TelegramIconProps = {
+  size?: number;
+  className?: string;
+};
+
+function TelegramIcon({ size = 20, className = '' }: TelegramIconProps) {
   return (
     <svg
       width={size}
@@ -19,7 +24,6 @@ export function ResultStaticView() {
   return (
     <div className="min-h-screen bg-white flex items-center justify-center px-4 py-6">
       <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        {/* LEFT IMAGE */}
         <div className="w-full flex justify-center">
           <img
             src="https://i.ibb.co/5gJvr5YB/s-Gbexw6dp-Qa-Yq0-Kqgt2-Y5iq-As-Nzw4bw-Dlr-L5-Y8-ZX.jpg"
@@ -28,30 +32,28 @@ export function ResultStaticView() {
           />
         </div>
 
-        {/* RIGHT CONTENT */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left">
           <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
             Дякуємо!
           </h1>
 
           <p className="text-slate-700 mb-6 leading-relaxed max-w-xl">
-            А поки Ви очікуєте — отримайте доступ до закритого Telegram-каналу
+            А поки ви очікуєте — отримайте доступ до закритого Telegram-каналу
             нашого клубу. Всередині — матеріали, розбори та анонси зустрічей,
             які не публікуємо у відкритих каналах.
           </p>
 
-          {/* BONUS CARD */}
           <div className="flex items-center gap-4 rounded-2xl px-6 py-4 mb-8 bg-gradient-to-r from-indigo-50 to-blue-50 border border-blue-100 shadow-sm">
             <span className="text-3xl">🎁</span>
             <span className="text-sm md:text-base font-semibold text-slate-900 leading-snug">
-              ЧІТКИЙ ПЛАН РОСТУ ТА ЗНИЖКА 50% <br />
+              ЧІТКИЙ ПЛАН РОСТУ ТА ЗНИЖКА 50%
+              <br />
               <span className="text-slate-700 font-medium">НА НАВЧАННЯ</span>
             </span>
           </div>
 
-          {/* SOCIALS */}
           <div className="flex items-center justify-center md:justify-start gap-5 mb-8">
-            
+            <a
               href="https://www.instagram.com/konsnabis/"
               target="_blank"
               rel="noopener noreferrer"
@@ -60,7 +62,7 @@ export function ResultStaticView() {
             >
               <Instagram size={26} />
             </a>
-            
+            <a
               href="https://www.youtube.com/channel/UCaMoBw9HpdDUQH9ba_EbQ2w"
               target="_blank"
               rel="noopener noreferrer"
@@ -69,7 +71,7 @@ export function ResultStaticView() {
             >
               <Youtube size={26} />
             </a>
-            
+            <a
               href="https://www.facebook.com/konsnabis"
               target="_blank"
               rel="noopener noreferrer"
@@ -80,8 +82,7 @@ export function ResultStaticView() {
             </a>
           </div>
 
-          {/* MAIN CTA */}
-          
+          <a
             href="https://t.me/+7mXOHceFdUY4MWJi"
             target="_blank"
             rel="noopener noreferrer"
