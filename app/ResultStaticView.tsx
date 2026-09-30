@@ -47,7 +47,7 @@ export function ResultStaticView() {
           </div>
           {/* SOCIALS */}
           <div className="flex items-center justify-center md:justify-start gap-5 mb-8">
-
+            <a
               href="https://www.instagram.com/konsnabis/"
               target="_blank"
               rel="noopener noreferrer"
@@ -56,7 +56,7 @@ export function ResultStaticView() {
             >
               <Instagram size={26} />
             </a>
-
+            <a
               href="https://www.youtube.com/channel/UCaMoBw9HpdDUQH9ba_EbQ2w"
               target="_blank"
               rel="noopener noreferrer"
@@ -65,7 +65,7 @@ export function ResultStaticView() {
             >
               <Youtube size={26} />
             </a>
-
+            <a
               href="https://www.facebook.com/konsnabis"
               target="_blank"
               rel="noopener noreferrer"
@@ -76,7 +76,7 @@ export function ResultStaticView() {
             </a>
           </div>
           {/* MAIN CTA */}
-
+          <a
             href="https://t.me/+7mXOHceFdUY4MWJi"
             target="_blank"
             rel="noopener noreferrer"

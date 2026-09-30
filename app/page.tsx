@@ -55,6 +55,21 @@ type LoadingStage = {
   progress: number;
 };
 
+/* ===================== ANALYTICS ===================== */
+
+// Microsoft Clarity: події для воронки по питаннях.
+// Якщо скрипт ще не завантажився — виклики стають у чергу (як у стандартному сніпеті).
+const trackClarity = (...args: unknown[]) => {
+  if (typeof window === 'undefined') return;
+  const w = window as any;
+  w.clarity =
+    w.clarity ||
+    function () {
+      (w.clarity.q = w.clarity.q || []).push(arguments);
+    };
+  w.clarity(...args);
+};
+
 /* ===================== COMPONENT ===================== */
 
 
@@ -85,7 +100,15 @@ export default function Home() {
   const leadSentRef = useRef(false);
 
   /* ---------- FLOW ---------- */
-  const hiddenQuestionIds = ['traffic_channel', 'analytics_skills', 'site_understanding'];
+  const hiddenQuestionIds = [
+    'traffic_channel',
+    'analytics_skills',
+    'site_understanding',
+    'smm_specialist',
+    'kpi_tracking',
+    'profit',
+    'scripts',
+  ];
 const visibleQuestions = questions.filter(q => !hiddenQuestionIds.includes(q.id));
 const flow = buildFlow(visibleQuestions, []);
   /*const flow = buildFlow(questions, infoScreens);*/
@@ -126,6 +149,19 @@ const { progress } = getQuestionProgress(
       utm_term: params.get('utm_term') || undefined,
     });
   }, []);
+
+  // Clarity: показ питання / форми (q1_marketing_understanding, ..., contact_view)
+  useEffect(() => {
+    if (step === 'quiz' && currentQuestion) {
+      trackClarity('event', `q${questionIndex}_${currentQuestion.id}`);
+      trackClarity('set', 'last_step', `q${questionIndex}`);
+    }
+
+    if (step === 'contact') {
+      trackClarity('event', 'contact_view');
+      trackClarity('set', 'last_step', 'contact');
+    }
+  }, [step, currentStepIndex]);
 
   /* ===================== ANSWERS ===================== */
 
@@ -279,6 +315,10 @@ const normalizePhone = (raw: string): string | null => {
   }
 
   leadSentRef.current = true;
+
+  // Clarity
+  trackClarity('event', 'lead_submit');
+  trackClarity('set', 'last_step', 'lead');
 
   // одразу показуємо результат
   setStep('result');
