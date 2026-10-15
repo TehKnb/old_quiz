@@ -39,7 +39,7 @@ export function ResultStaticView() {
           >
             <span className="text-3xl">🎁</span>
             <span className="text-sm md:text-base font-semibold text-slate-900 leading-snug">
-              ЧІТКИЙ ПЛАН РОСТУ ТА ЗНИЖКА 50% <br />
+              ЧІТКИЙ ПЛАН РОСТУ ТА ЗНИЖКА 40% <br />
               <span className="text-slate-700 font-medium">
                 НА НАВЧАННЯ
               </span>

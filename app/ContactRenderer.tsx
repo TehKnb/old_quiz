@@ -171,7 +171,7 @@ export function ContactRenderer({
 
             <span className="text-sm font-medium text-slate-800 leading-snug">
               ЧІТКИЙ ПЛАН РОСТУ<br />
-              та знижка <span className="font-semibold">50%</span> на навчання
+              та знижка <span className="font-semibold">40%</span> на навчання
             </span>
           </div>
 

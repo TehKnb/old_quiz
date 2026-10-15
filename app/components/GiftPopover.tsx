@@ -51,7 +51,7 @@ export function GiftPopover() {
 
           <span className="text-xs font-medium text-slate-800 leading-tight">
             ЧІТКИЙ ПЛАН РОСТУ<br />
-            та знижка <span className="font-semibold">50%</span>
+            та знижка <span className="font-semibold">40%</span>
           </span>
         </div>
       )}
