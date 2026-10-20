@@ -436,7 +436,8 @@ if (step === 'quiz' && currentStep?.type === 'info') {
       <QuizLayout progress={progress}>
         <QuestionChoiceMobile
           progress={progress}
-          imageUrl="https://i.ibb.co/FqCjjrZZ/c44ecb5c0f2b20c1.png"
+          imageUrl="/quiz/q1-hero.webp"
+          singleLineTitle
           question={{
             text: currentQuestion.text,
             subtitle: currentQuestion.subtitle,

@@ -1,5 +1,6 @@
 'use client';
 
+import { useLayoutEffect, useRef } from 'react';
 import { ProgressBar } from './components/ProgressBar';
 import { GiftPopover } from './components/GiftPopover';
 
@@ -15,6 +16,7 @@ type Props = {
   onSelect: (v: string) => void;
   onNext: () => void;
   onPrev?: () => void;
+  singleLineTitle?: boolean; // заголовок в один рядок: шрифт зменшується під ширину
 };
 
 export function QuestionChoiceMobile({
@@ -25,7 +27,30 @@ export function QuestionChoiceMobile({
   onSelect,
   onNext,
   onPrev,
+  singleLineTitle,
 }: Props) {
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  // Підганяємо розмір шрифту, щоб заголовок влазив в один рядок
+  useLayoutEffect(() => {
+    const el = titleRef.current;
+    if (!singleLineTitle || !el) return;
+
+    const fit = () => {
+      el.style.fontSize = '';
+      const base = parseFloat(getComputedStyle(el).fontSize);
+      const ratio = el.clientWidth / el.scrollWidth;
+      if (ratio < 1) {
+        el.style.fontSize = `${Math.floor(base * ratio * 10) / 10}px`;
+      }
+    };
+
+    fit();
+    const ro = new ResizeObserver(fit);
+    ro.observe(el.parentElement!);
+    return () => ro.disconnect();
+  }, [singleLineTitle, question.text]);
+
   return (
     <div className="min-h-screen bg-white px-4 py-4 md:py-16 flex flex-col text-slate-900">
       {/* MAIN CONTENT */}
@@ -50,7 +75,12 @@ export function QuestionChoiceMobile({
           {/* QUESTION + OPTIONS */}
           <div className="w-full flex flex-col justify-center">
             {/* QUESTION */}
-            <h1 className="text-2xl md:text-4xl font-bold text-center mb-6 text-slate-900">
+            <h1
+              ref={titleRef}
+              className={`text-2xl md:text-4xl font-bold text-center mb-6 text-slate-900 ${
+                singleLineTitle ? 'whitespace-nowrap overflow-hidden' : ''
+              }`}
+            >
               {question.text}
             </h1>
 
