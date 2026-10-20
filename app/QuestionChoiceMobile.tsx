@@ -17,6 +17,7 @@ type Props = {
   onNext: () => void;
   onPrev?: () => void;
   singleLineTitle?: boolean; // заголовок в один рядок: шрифт зменшується під ширину
+  navAfterOptionsMobile?: boolean; // на телефоні кнопки одразу під варіантами, а не внизу екрана
 };
 
 export function QuestionChoiceMobile({
@@ -28,6 +29,7 @@ export function QuestionChoiceMobile({
   onNext,
   onPrev,
   singleLineTitle,
+  navAfterOptionsMobile,
 }: Props) {
   const titleRef = useRef<HTMLHeadingElement>(null);
 
@@ -55,12 +57,12 @@ export function QuestionChoiceMobile({
     <div className="min-h-screen bg-white px-4 py-4 md:py-16 flex flex-col text-slate-900">
       {/* MAIN CONTENT */}
       <div
-        className="
-          flex-1 flex
+        className={`
+          ${navAfterOptionsMobile ? 'md:flex-1 pt-1' : 'flex-1 pt-4'} flex
           items-start md:items-center
           justify-start md:justify-center
-          pt-4 md:pt-0
-        "
+          md:pt-0
+        `}
       >
         <div className="w-full flex flex-col md:grid md:grid-cols-2 md:gap-10 items-center">
           {/* IMAGE */}
@@ -77,7 +79,9 @@ export function QuestionChoiceMobile({
             {/* QUESTION */}
             <h1
               ref={titleRef}
-              className={`text-2xl md:text-4xl font-bold text-center mb-6 text-slate-900 ${
+              className={`text-2xl md:text-4xl font-bold text-center ${
+                navAfterOptionsMobile ? 'mb-4 md:mb-6' : 'mb-6'
+              } text-slate-900 ${
                 singleLineTitle ? 'whitespace-nowrap overflow-hidden' : ''
               }`}
             >
@@ -92,7 +96,11 @@ export function QuestionChoiceMobile({
             )}
 
             {/* OPTIONS */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+            <div
+              className={`grid grid-cols-1 md:grid-cols-2 gap-3 ${
+                navAfterOptionsMobile ? 'mb-2 md:mb-6' : 'mb-6'
+              }`}
+            >
               {question.options.map((opt) => {
                 const active = value === opt;
 

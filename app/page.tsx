@@ -438,6 +438,7 @@ if (step === 'quiz' && currentStep?.type === 'info') {
           progress={progress}
           imageUrl="/quiz/q1-hero.webp"
           singleLineTitle
+          navAfterOptionsMobile
           question={{
             text: currentQuestion.text,
             subtitle: currentQuestion.subtitle,
